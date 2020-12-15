@@ -22,6 +22,7 @@ const App=({})=>{
 
   const exclusionArray = [
     '/login',
+    '/',
     '/registration',
   ]
   
@@ -31,6 +32,7 @@ return (
   {exclusionArray.indexOf(location.pathname) < 0 && <Navbar />}
     <Switch>
       <Route exact path='/' component={Login}></Route>
+      <Route exact path="/login" component={Login} />
       <Route exact path="/doctorlist" component={Doctoreditdisplaylist} />
       <Route exact path="/patientlist" component={Patienteditdisplaylist} />
       <Route exact path="/nurselist" component={Nurseeditdisplaylist} />

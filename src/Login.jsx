@@ -5,27 +5,46 @@ import { useHistory } from "react-router-dom";
 import stylesLogin from "./Login.module.css";
 
 import { Example } from './Modals/Example'
-
+import { VerifyOTP } from './Modals/VerifyOTP'
+import { Passwordsetup } from './Modals/Passwordsetup'
 
 import { FaEnvelope, FaKey, FaFacebook, FaGoogle, FaTwitter, } from 'react-icons/fa';
 
 const Login = () => {
 
-    // const [show, setShow] = useState(false);
-    const closeModalHandler = () => {
+     // const [show, setShow] = useState(false);
+     const closeModalHandler = () => {
         setShow(false);
     }
+    const [inputForVerifyOTP1, setinputForVerifyOTP1] = useState({
+            userEmail: '',
+            OTPAPIValue: '',
+            regMobileNo:'',
+        });
 
-    const [show, setShow] = useState(false); 
-  
-    const handleClose = () => setShow(false); 
-    const handleShow = () => setShow(true); 
+        
+    const [isActivateAccountRequired, setisActivateAccountRequired] = useState(false);
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
 
+    //openVerifyOTPPopup
+    const [showVerifyOTPPopup, setShowVerifyOTPPopup] = useState(false);
+    const closeVerifyOTPPopup = () => setShowVerifyOTPPopup(false);
+    const openVerifyOTPPopup = () => setShowVerifyOTPPopup(true);
 
-    const [showForgotPassword,setShowForgotPassword]=useState(false);
-    const closeModalHandlerForgotPassword=()=>
-    {
+    //openPasswordSetupPopup
+
+    const [showPasswordSetupPopup, setshowPasswordSetupPopup] = useState(false);
+    const closePasswordSetupPopup = () => setshowPasswordSetupPopup(false);
+    const openPasswordSetupPopup = () => setshowPasswordSetupPopup(true);
+
+
+    const [showForgotPassword, setShowForgotPassword] = useState(false);
+    const closeModalHandlerForgotPassword = () => {
         setShowForgotPassword(false);
     }
     const [data, setData] = useState({
@@ -33,13 +52,16 @@ const Login = () => {
         password: '',
     });
 
-   
+
     const history = useHistory();
+
+    const redirectTo =  (path) => {
+            history.push(path);
+    }
 
 
     const InputEvent = (event) => {
         const { name, value } = event.target;
-
         setData((preVal) => {
             return {
                 ...preVal,
@@ -59,19 +81,61 @@ const Login = () => {
             password: data.password
         }
         getLoadData(dataobj);
-        // let loadResponse = await Api.login(loadId);
-        // if(loadResponse){
-        //     console.log("sumit");
-        // }
     };
 
     const getLoadData = async (load) => {
         let loadResponse = await Api.login(load);
         if (loadResponse.status) {
-            alert("success login")
-           // history.push("/");
+            alert("success login");
+            redirectTo('/doctorlist')
         }
     };
+
+    function forgotPasswordSet(data) {
+        setinputForVerifyOTP1({
+            userEmail: data
+          });
+      setTimeout(() => {
+        handleClose();
+        GenerateOTP();
+      }, 300);
+    
+    }
+
+
+
+    function GenerateOTP() {
+        if (inputForVerifyOTP1.userEmail == '' || inputForVerifyOTP1.userEmail == undefined) {
+            alert("Please Enter Email Id to forgot password");
+            return;
+        }
+        let dataobj = {
+            "email": inputForVerifyOTP1.userEmail
+        }
+        GenerateOTPAPICall(dataobj);
+    }
+
+    const GenerateOTPAPICall = async (load) => {
+        let loadResponse = await Api.GenerateOTP(load);
+        if (loadResponse.status) {
+            alert("success OTP")
+            setinputForVerifyOTP1(prev => ({
+                ...prev, OTPAPIValue: loadResponse.data.response.OTP,
+                regMobileNo: loadResponse.data.response.regMobileNo
+            }))
+            openVerifyOTPPopup();
+        }
+    };
+
+    function  verifyOTPSet(email) {
+        console.log("valuevaluevalue", email);
+        setinputForVerifyOTP1(prev => ({
+            ...prev, userEmail: email
+        }))
+        closeVerifyOTPPopup();
+        openPasswordSetupPopup();
+      }
+
     return (
         <>
             <div  className={stylesLogin["loginSection"]} style={{ position: 'absolute', height: '100%' }}>
@@ -135,8 +199,13 @@ const Login = () => {
             </Button>  */}
 
 
-        <Example email={data.email} show={show} handleClose={handleClose} /> 
+<Example forgotPasswordSet={forgotPasswordSet}  email={data.email} show={show} handleClose={handleClose}  /> 
 
+
+<VerifyOTP showVerifyOTPPopup={showVerifyOTPPopup}  inputForVerifyOTP={inputForVerifyOTP1} closeVerifyOTPPopup={closeVerifyOTPPopup} verifyOTPSet={verifyOTPSet}></VerifyOTP> 
+
+
+<Passwordsetup userEmail={inputForVerifyOTP1.userEmail} isActivateAccountRequired={isActivateAccountRequired} showPasswordSetupPopup={showPasswordSetupPopup}  closePasswordSetupPopup={closePasswordSetupPopup} verifyOTPSet={verifyOTPSet}></Passwordsetup> 
 
 
          {/* {showForgotPassword ? <div onClick={closeModalHandlerForgotPassword} className="back-drop"></div> : null}

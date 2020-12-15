@@ -10,7 +10,9 @@ import {
     Get_PharmacistsList,
     Get_MedicinesList,
     Get_LabTestsList,
-    Get_LabTestsPackageList
+    Get_LabTestsPackageList,
+    GenerateOTP,
+    Forgot_Password
 } from "../constants/constants";
 
 
@@ -50,7 +52,14 @@ export default {
   
   login: async (load) => {
     return POST(`${Commaon_Path}${API_VERSION_V1}${login}`, load);
-  },  
+  }, 
+  GenerateOTP: async (load) => {
+    return POST(`${Commaon_Path}${API_VERSION_V1}${GenerateOTP}`, load);
+  },
+
+  ForgotPassword: async (load) => {
+    return POST(`${Commaon_Path}${API_VERSION_V1}${Forgot_Password}`, load);
+  }, 
 //   updateLoadStatus: (userId, bidId, status) => {
 //     return PUT(`${Commaon_Path}/${API_VERSION_V1}/bidStatus`, {
 //       bidId,

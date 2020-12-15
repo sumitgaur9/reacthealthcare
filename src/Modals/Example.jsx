@@ -6,11 +6,16 @@ import Modal from 'react-bootstrap/Modal';
 
 import './Forgotpassword.css';
 
-export const Example=({ show, handleClose,email }) => {
+export const Example=({ show, handleClose,email,forgotPasswordSet }) => {
 
     const [forgotpasswordData,setforgotpasswordData]=useState({
         email:email
     })
+
+
+    const [inputForVerifyOTP, setinputForVerifyOTP] = useState({userEmail: '', caption: ''});
+
+
 
     const forgotPasswordSubmit=()=>{
       //  e.preventDefault();
@@ -20,31 +25,23 @@ export const Example=({ show, handleClose,email }) => {
 
     const InputEventForgotPasswordEmail = (event) => {
         const { name, value } = event.target;
-
+        // this.setState({
+        //     inputValue: evt.target.value
+        //   });
         setforgotpasswordData((preVal) => {
             return {
                 ...preVal,
                 [name]: value,
             }
         })
+        setinputForVerifyOTP(prev => ({...prev, userEmail: event.target.value}))
     };
 
-    // const  openVerifyOTPPopup=()
-    // {
+    const  openVerifyOTPPopup=()=>
+    {
+        forgotPasswordSet(inputForVerifyOTP.userEmail);
+    }
 
-    // }
-
-
-
-    // public openVerifyOTPPopup() {
-    //     this.inputForVerifyOTP.userEmail = this.forgotPasswordInfo.controls.email.value;
-    //     this.forgotPasswordSet.emit(this.inputForVerifyOTP);
-    //   }
-
-      
-
-
-    
     return(
             <> 
        <form>
@@ -87,7 +84,11 @@ export const Example=({ show, handleClose,email }) => {
 
                                           <div className="form-group">
                                               <span className="has-float-label">
+
                                               <input type="email" className="form-control" id="email" name="email" onChange={InputEventForgotPasswordEmail}  value={forgotpasswordData.email} placeholder="Email" />
+
+
+                                              {/* <input type="email" className="form-control" id="email" name="email" onChange={InputEventForgotPasswordEmail}  value={forgotpasswordData.email} placeholder="Email" /> */}
 
                                                  
                                                   {/* <input className="form-control" id="email"
@@ -119,7 +120,7 @@ export const Example=({ show, handleClose,email }) => {
                   Close 
                 </Button>  */}
                 <div class="buttonSection" style={{width:'100%',float:'left'}}>
-                      <button style={{width:'33%',float:'left'}} className="primartButton" type="button"  onClick={() => forgotPasswordSubmit()}>Send OTP</button>
+                      <button style={{width:'33%',float:'left'}} className="primartButton" type="button"  onClick={() => openVerifyOTPPopup()}>Send OTP</button>
                       <button style={{width:'40%',float:'left'}}  className="secondryButton" type="reset" onClick={handleClose}>Cancel</button>
                   </div>
                   
