@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Api from './api/apiService'
 import { useHistory } from "react-router-dom";
 // import { ModalForgotPassword } from './Modals/Forgotpassword'
+import stylesLogin from "./Login.module.css";
 
 import { Example } from './Modals/Example'
 
@@ -73,19 +74,19 @@ const Login = () => {
     };
     return (
         <>
-            <div className="loginSection" style={{ position: 'absolute', height: '100%' }}>
-                <div className="container">
+            <div  className={stylesLogin["loginSection"]} style={{ position: 'absolute', height: '100%' }}>
+                <div className={stylesLogin["container"]} >
                     <div className="d-flex justify-content-center h-100">
-                        <div className="card">
-                            <div className="card-header">
-                                <h3>Sign In</h3>
-                                <div className="d-flex justify-content-end social_icon">                                    
+                        <div className={stylesLogin["card"]}>
+                            <div  className="card-header">
+                                <h3 style={{color:'#fff'}}>Sign In</h3>
+                                <div className={stylesLogin["social_icon"]} style={{ justifyContent: 'flex-end!important',display: 'flex'}}>                                    
                                     <span><i class="fa fa-facebook-square" style={{ color: '#4066a2', fontSize: '45px' }}></i></span>
                                     <span><i class="fa fa-google-plus-square" style={{ color: '#d54c40', fontSize: '45px' }}></i></span>
                                     <span><i class="fa fa-twitter-square" style={{ color: '#02a6e5', fontSize: '45px' }}></i></span>
                                 </div>
                             </div>
-                            <div className="card-body">
+                            <div  className="card-body">
                                 <form onSubmit={formSubmit}>
                                     <div className="input-group form-group ">
                                         <div className="input-group-prepend" style={{ display: 'flex' }}>
@@ -101,8 +102,8 @@ const Login = () => {
                                         <input type="password" className="form-control" id="exampleFormControlInput2" name="password" onChange={InputEvent} value={data.password} placeholder="Password" />
                                     </div>
 
-                                    <div className="row align-items-center remember">
-                                        <input type="checkbox" id="readtandc" />Remember Me
+                                    <div className="row align-items-center remember" style={{color:'#fff'}}>
+                                        <input type="checkbox" id="readtandc" style={{width: '20px',height: '20px',marginLeft: '15px',marginRight: '5px'}} />Remember Me
 					                </div>
                                     <div className="form-group">
                                         <button className="btn float-right login_btn" style={{
@@ -113,9 +114,9 @@ const Login = () => {
                                     </div>
                                 </form>
                             </div>
-                            <div className="card-footer">
-                                <div className="d-flex justify-content-center links">
-                                    Don't have an account?<a routerLink="/registration">Sign Up</a>
+                            <div  className="card-footer">
+                                <div className="d-flex justify-content-center" style={{color:'#fff'}}>
+                                    Don't have an account?<a routerLink="/registration" style={{color: '#007bff',textDecoration:'none',backgroundColor:'transparent'}}>Sign Up</a>
                                 </div>
 
                                 <div className="d-flex justify-content-center">
