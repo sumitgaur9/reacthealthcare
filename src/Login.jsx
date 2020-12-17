@@ -153,15 +153,15 @@ const Login = () => {
                             <div  className="card-body">
                                 <form onSubmit={formSubmit}>
                                     <div className="input-group form-group ">
-                                        <div className="input-group-prepend" style={{ display: 'flex' }}>
-                                            <span className="input-group-text"><FaEnvelope /></span>
+                                        <div className={stylesLogin["input-group-prepend"]}>
+                                            <span className="input-group-text"><i class="fa fa-user"></i></span>
                                         </div>
 
-                                        <input type="email" className="form-control" id="exampleFormControlInput1" name="email" onChange={InputEvent} value={data.email} placeholder="Username" />
+                                        <input type="email" className="form-control" id="exampleFormControlInput1" name="email" onChange={InputEvent} value={data.email} placeholder="Email Address" />
                                     </div>
                                     <div className="input-group form-group  ">
-                                        <div className="input-group-prepend" style={{ display: 'flex' }}>
-                                            <span className="input-group-text"><FaKey /></span>
+                                    <div className={stylesLogin["input-group-prepend"]}>
+                                            <span className="input-group-text"><i class="fa fa-key"></i></span>
                                         </div>
                                         <input type="password" className="form-control" id="exampleFormControlInput2" name="password" onChange={InputEvent} value={data.password} placeholder="Password" />
                                     </div>

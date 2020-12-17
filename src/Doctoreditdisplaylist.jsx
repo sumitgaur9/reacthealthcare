@@ -2,10 +2,34 @@ import React, { useState, useEffect } from 'react'
 import Api from './api/apiService'
 import { arrayBufferToBase64 } from './utils/utils'
 import styles from "./Doctoreditdisplaylist.module.css";
+import { Doctorprofile } from './Modals/Doctorprofile'
+
 
 const Doctoreditdisplaylist = () => {
 
+    const closeModalHandler = () => {
+        setShow(false);
+    }
+    const [doctorid, setDoctorID] = useState('');
+
+    const [inputForVerifyOTP1, setinputForVerifyOTP1] = useState({
+        userEmail: '',
+        OTPAPIValue: '',
+        regMobileNo: '',
+    });
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     const [doctorListData, setDoctorListData] = useState([]);
+
+    //openVerifyOTPPopup
+    const [showVerifyOTPPopup, setShowVerifyOTPPopup] = useState(false);
+    const closeVerifyOTPPopup = () => setShowVerifyOTPPopup(false);
+    const openVerifyOTPPopup = () => setShowVerifyOTPPopup(true);
+
 
     useEffect(() => {
         const getDoctorsList = async (load) => {
@@ -29,6 +53,12 @@ const Doctoreditdisplaylist = () => {
 
     function arrayBufferToBase64local(buffer) {
         return arrayBufferToBase64(buffer)
+    }
+
+    function openDoctorProfilePopup(id){
+        setDoctorID(id);
+        // alert(doctorid)
+        setShowVerifyOTPPopup(true)
     }
 
 
@@ -63,7 +93,18 @@ const Doctoreditdisplaylist = () => {
                                                                         </h5>
                                                                     </div>
                                                                 </div>
-
+                                                                <div style={{width:'10%',float:'right'}}>
+                                                                    <div style={{width:'30%',float:'left'}} className="card-title1">
+                                                                     <i className="fa fa-pencil" style={{fontSize: '20px'}} aria-hidden="true"
+                                                                        onClick={() => openDoctorProfilePopup(data._id)}></i> 
+                                                                        {/* <i className="fa fa-pencil" style={{fontSize: '20px'}} aria-hidden="true"
+                                                                        onClick={() => openVerifyOTPPopup(true)}></i> */}
+                                                                    </div>
+                                                                    <div style={{float:'left',width:'4%'}} className="card-title1">
+                                                                    <i className="fa fa-trash" aria-hidden="true"
+                                                                        style={{color:'red',fontSize: '20px'}}></i>
+                                                                    </div>
+                                                                </div>
                                                             </div>
 
                                                             <div style={{ width: '60%', float: 'left', marginBottom: '3%' }}>
@@ -110,6 +151,11 @@ const Doctoreditdisplaylist = () => {
                     </div>
                 </div>
             </div>
+
+            {showVerifyOTPPopup && <Doctorprofile showVerifyOTPPopup={showVerifyOTPPopup}  doctorid={doctorid} closeVerifyOTPPopup={closeVerifyOTPPopup}/>}
+
+    {/* <Doctorprofile showVerifyOTPPopup={showVerifyOTPPopup}  doctorid={doctorid} closeVerifyOTPPopup={closeVerifyOTPPopup}></Doctorprofile>  */}
+
         </>
     )
 }

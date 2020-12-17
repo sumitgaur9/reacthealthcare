@@ -2,11 +2,17 @@ import React, { useState, useEffect } from 'react'
 import Api from './api/apiService'
 import { arrayBufferToBase64 } from './utils/utils'
 import stylesNur from "./Otherlinks.module.css";
+import { useHistory } from "react-router-dom";
 
 const Otherlinks = () => {
 
     const [doctorListData, setDoctorListData] = useState([]);
 
+    const history = useHistory();
+
+    const redirectTo =  (path) => {
+      history.push(path);
+    }
     // useEffect(() => {
     //     const getDoctorsList = async (load) => {
     //         let loadResponse = await Api.getNursesList(load);
@@ -166,17 +172,17 @@ const Otherlinks = () => {
                 
                 <div class="text-center" style={{marginTop: "5%"}}>
                   <button style={{width: "225px"}} class={stylesNur.btn}><i class="fa fa-list" aria-hidden="true"></i><span
-                      style={{marginLeft:"5px"}}>GetLabTestList</span></button>
+                      style={{marginLeft:"5px"}} onClick={() => redirectTo("/labtestlist")}>GetLabTestList</span></button>
                 </div>
 
                 <div class="text-center" style={{marginTop: "5%"}}>
                   <button style={{width: "225px"}} class={stylesNur.btn}><i class="fa fa-list" aria-hidden="true"></i><span
-                      style={{marginLeft:"5px"}}>GetLabTestPackageList</span></button>
+                      style={{marginLeft:"5px"}} onClick={() => redirectTo("/labtestpackagelist")}>GetLabTestPackageList</span></button>
                 </div>
 
                 <div class="text-center" style={{marginTop: "5%"}}>
                   <button style={{width: "225px"}} class={stylesNur.btn}><i class="fa fa-list"
-                      aria-hidden="true"></i><span style={{marginLeft:"5px"}}>Medicine List</span></button>
+                      aria-hidden="true"></i><span style={{marginLeft:"5px"}} onClick={() => redirectTo("/medicineslist")} >Medicine List</span></button>
                 </div>
                 
                 <div class="text-center" style={{marginTop: "5%"}}>

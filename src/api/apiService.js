@@ -12,11 +12,15 @@ import {
     Get_LabTestsList,
     Get_LabTestsPackageList,
     GenerateOTP,
-    Forgot_Password
+    Forgot_Password,
+    Get_DoctorProfile
 } from "../constants/constants";
 
 
 export default {
+  getDoctorProfile: (load,rolebasedid) => {
+    return GET(`${Commaon_Path}${API_VERSION_V1}${Get_DoctorProfile}/${rolebasedid}`);
+  },
   getDoctorsList: (load) => {
     return GET(`${Commaon_Path}${API_VERSION_V1}${Get_DoctorsList}`);
   },

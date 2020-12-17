@@ -54,6 +54,13 @@
     top: -49px;
     }
     
+
+    .input-group-prepend,
+    .input-group-append {
+      display: -ms-flexbox;
+      display: flex;
+    }
+
     .input-group-prepend span{
     width: 50px;
     background-color: #41afd6;
