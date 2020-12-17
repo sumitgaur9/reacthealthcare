@@ -78,6 +78,12 @@ import styles from './Doctorprofile.module.css';
           >
 
             <Modal.Body>
+            <div className="modal-header" style={{ height: '47px', background: 'linear-gradient(to right, #39b49a 0%, #1d86df 100%)' }}>
+                <button type="button" className="close" onClick={props.closeVerifyOTPPopup}><span aria-hidden="true" className="closebtnspan">&times;</span></button>
+                <p className="cc popupheaderheading"><i className="fa fa-medkit"></i><span style={{ marginLeft: '5px' }}> Welcome
+                    &nbsp;<span style={{color:'white'}}> Patient &nbsp;[{data.name}]</span></span>
+                </p>
+            </div>
               <div className="overlay"></div>
               <div className="popupContainer">
                 <div className="containerBlock">

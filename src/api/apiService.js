@@ -13,13 +13,29 @@ import {
     Get_LabTestsPackageList,
     GenerateOTP,
     Forgot_Password,
-    Get_DoctorProfile
+    Get_DoctorProfile,
+    Get_PatientProfile,
+    Get_PharmacistProfile,
+    Get_NurseProfile,
+    Get_PhysioProfile
 } from "../constants/constants";
 
 
 export default {
   getDoctorProfile: (load,rolebasedid) => {
     return GET(`${Commaon_Path}${API_VERSION_V1}${Get_DoctorProfile}/${rolebasedid}`);
+  },
+  getPatientProfile: (load,rolebasedid) => {
+    return GET(`${Commaon_Path}${API_VERSION_V1}${Get_PatientProfile}/${rolebasedid}`);
+  },
+  getPharmacistProfile: (load,rolebasedid) => {
+    return GET(`${Commaon_Path}${API_VERSION_V1}${Get_PharmacistProfile}/${rolebasedid}`);
+  },
+  getNurseProfile: (load,rolebasedid) => {
+    return GET(`${Commaon_Path}${API_VERSION_V1}${Get_NurseProfile}/${rolebasedid}`);
+  },
+  getPhysioProfile: (load,rolebasedid) => {
+    return GET(`${Commaon_Path}${API_VERSION_V1}${Get_PhysioProfile}/${rolebasedid}`);
   },
   getDoctorsList: (load) => {
     return GET(`${Commaon_Path}${API_VERSION_V1}${Get_DoctorsList}`);

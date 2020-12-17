@@ -2,11 +2,34 @@ import React, { useState, useEffect } from 'react'
 import Api from './api/apiService'
 import { arrayBufferToBase64 } from './utils/utils'
 import stylesPat from "./Patienteditdisplaylist.module.css";
+import { Patientprofile } from './Modals/Patientprofile'
 
 const Patienteditdisplaylist = () => {
 
+    const closeModalHandler = () => {
+        setShow(false);
+    }
+    const [doctorid, setDoctorID] = useState('');
+
+    const [inputForVerifyOTP1, setinputForVerifyOTP1] = useState({
+        userEmail: '',
+        OTPAPIValue: '',
+        regMobileNo: '',
+    });
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     const [doctorListData, setDoctorListData] = useState([]);
 
+      //openVerifyOTPPopup
+      const [showVerifyOTPPopup, setShowVerifyOTPPopup] = useState(false);
+      const closeVerifyOTPPopup = () => setShowVerifyOTPPopup(false);
+      const openVerifyOTPPopup = () => setShowVerifyOTPPopup(true);
+
+      
     useEffect(() => {
         const getDoctorsList = async (load) => {
             let loadResponse = await Api.getPatientsList(load);
@@ -31,6 +54,11 @@ const Patienteditdisplaylist = () => {
         return arrayBufferToBase64(buffer)
     }
 
+    function openDoctorProfilePopup(id){
+        setDoctorID(id);
+        // alert(doctorid)
+        setShowVerifyOTPPopup(true)
+    }
 
     return (
         <>
@@ -63,7 +91,7 @@ const Patienteditdisplaylist = () => {
 
                                         <div style={{float:'left',width:'100%'}}>
                                             <div style={{float:'left',width:'96%'}} class="card-title1">
-                                                <i class="fa fa-pencil" ></i>
+                                                <i class="fa fa-pencil" onClick={() => openDoctorProfilePopup(data._id)}></i>
                                             </div>
                                             <div style={{float:'left',width:'4%'}} class="card-title1">
                                             <i class="fa fa-trash" aria-hidden="true" style={{color:'red'}}></i>
@@ -80,6 +108,8 @@ const Patienteditdisplaylist = () => {
                     </div>
                 </div>
             
+        {showVerifyOTPPopup && <Patientprofile showVerifyOTPPopup={showVerifyOTPPopup}  doctorid={doctorid} closeVerifyOTPPopup={closeVerifyOTPPopup}/>}
+
         </>
     )
 }
