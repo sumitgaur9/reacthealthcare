@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Api from '../api/apiService'
-import { arrayBufferToBase64 } from '../utils/utils'
+import { arrayBufferToBase64, getBase64} from '../utils/utils'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -31,13 +31,40 @@ import styles from './Physiotherapistprofile.module.css';
     })
   };
 
+
+  var UploadFile = [];
+  var UploadFileName = '';  
+
+  const uploadFile = (fileInput) => {
+    if (fileInput.length === 0) {
+      return;
+    }
+    //setUploadFile(<Array<File>>fileInput.target.files);
+    UploadFile[0] = fileInput.target.files[0]; 
+    UploadFileName = UploadFile[0].name;
+    console.log("UploadFile",UploadFile);
+    console.log("UploadFileName",UploadFileName);
+    main();
+
+   };
+
+    async function main() {
+    var files = document.querySelector('#myfile');
+    const file = files.files[0];
+
+    getBase64(file, (result) => {
+      setImageValue(result);
+    });
+  } 
+  
+
   function arrayBufferToBase64local(buffer) {
     return arrayBufferToBase64(buffer)
 }
 
   useEffect(() => {
     const getDoctorsList = async (load) => {
-       alert(props.doctorid)
+       //alert(props.doctorid)
       let loadResponse = await Api.getPhysioProfile(load,props.doctorid); 
       //  let loadResponse = await Api.getDoctorProfile(load,"5f4b65e3f8872c0004c65617");  //with image
       //let loadResponse = await Api.getDoctorProfile(load,"5f8029708068bc00049fe054"); //without image
@@ -153,7 +180,7 @@ import styles from './Physiotherapistprofile.module.css';
                                                 <img className="otpPopup-img" src={getImageValue} alt="passwordsetImg" style={{ borderRadius: '10%' }} />
                                                 <div className="form-group">
                                                     <div className="input-group mb-2">
-                                                        <input type="file" id="myfile" className="form-control" name="file" style={{ padding: '5px', fontSize: '11px', border: '2px dashed #0000ff9c', backgroundColor: '#36afa37a', height: '39px' }} />
+                                                        <input type="file" id="myfile" className="form-control" name="file" onChange={uploadFile} style={{ padding: '5px', fontSize: '11px', border: '2px dashed #0000ff9c', backgroundColor: '#36afa37a', height: '39px' }} />
 
                                                     </div>
                                                 </div>
