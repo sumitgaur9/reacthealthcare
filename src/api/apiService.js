@@ -20,7 +20,10 @@ import {
     Get_PhysioProfile,
     Get_ExpertiseList,
     Update_DoctorProfile,
-    Update_PatientProfile
+    Update_PatientProfile,
+    Update_PhysioProfile,
+    Update_NurseProfile,
+    Update_PharmacistProfile
 } from "../constants/constants";
 
 
@@ -49,6 +52,15 @@ export default {
   },
   Update_PatientProfile: (load, id, ) => {
     return PUT(`${Commaon_Path}${API_VERSION_V1}${Update_PatientProfile}/${id}`,load);
+  },
+  Update_PharmacistProfile: (load, id, ) => {
+    return PUT(`${Commaon_Path}${API_VERSION_V1}${Update_PharmacistProfile}/${id}`,load);
+  },
+  Update_NurseProfile: (load, id, ) => {
+    return PUT(`${Commaon_Path}${API_VERSION_V1}${Update_NurseProfile}/${id}`,load);
+  },
+  Update_PhysioProfile: (load, id, ) => {
+    return PUT(`${Commaon_Path}${API_VERSION_V1}${Update_PhysioProfile}/${id}`,load);
   },
 
   

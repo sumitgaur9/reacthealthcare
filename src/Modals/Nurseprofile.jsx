@@ -93,6 +93,30 @@ import styles from './Nurseprofile.module.css';
 
 }, []);
     
+const Update_NurseProfile = async () => {
+    var formData = new FormData();
+      formData.append('image', '');
+      if (UploadFile.length && UploadFileName) {
+        formData.append('newimage', UploadFile[0], UploadFileName);
+      } else {
+        formData.append('newimage', '');
+      }
+    formData.append('name', data.name);
+    formData.append('email', data.email);
+    formData.append('phoneno', data.phoneno);
+    formData.append('charges', data.charges);
+    formData.append('area', data.area);
+    formData.append('id', data.id);
+    formData.append('participantID', data.participantID);
+    formData.append('description', data.description);
+    let loadResponse = await Api.Update_NurseProfile(formData,props.doctorid);
+    if (loadResponse.status) {
+      props.closeVerifyOTPPopup(); 
+      } else {
+        // setExpertiesArrayData([]);
+      }
+  };
+
     return(
             <> 
        <form>
@@ -219,7 +243,7 @@ import styles from './Nurseprofile.module.css';
                     <Modal.Footer>
                         <div className="buttonSection">
                             <div className="text-center">
-                                <input type="submit" style={{ width: '200px', fontWeight: '600' }} value="✔️ &nbsp;&nbsp;Save" className="btn btn-info btn-block rounded-0 py-2" />
+                                <input type="submit" onClick={Update_NurseProfile} style={{ width: '200px', fontWeight: '600' }} value="✔️ &nbsp;&nbsp;Save" className="btn btn-info btn-block rounded-0 py-2" />
                             </div>
                         </div>
                     </Modal.Footer>
