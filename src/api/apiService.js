@@ -17,7 +17,10 @@ import {
     Get_PatientProfile,
     Get_PharmacistProfile,
     Get_NurseProfile,
-    Get_PhysioProfile
+    Get_PhysioProfile,
+    Get_ExpertiseList,
+    Update_DoctorProfile,
+    Update_PatientProfile
 } from "../constants/constants";
 
 
@@ -36,7 +39,19 @@ export default {
   },
   getPhysioProfile: (load,rolebasedid) => {
     return GET(`${Commaon_Path}${API_VERSION_V1}${Get_PhysioProfile}/${rolebasedid}`);
+  },  
+  Get_ExpertiseList: (load) => {
+    return GET(`${Commaon_Path}${API_VERSION_V1}${Get_ExpertiseList}`);
   },
+
+  Update_DoctorProfile: (load,id) => {
+    return PUT(`${Commaon_Path}${API_VERSION_V1}${Update_DoctorProfile}/${id}`,load);
+  },
+  Update_PatientProfile: (load, id, ) => {
+    return PUT(`${Commaon_Path}${API_VERSION_V1}${Update_PatientProfile}/${id}`,load);
+  },
+
+  
   getDoctorsList: (load) => {
     return GET(`${Commaon_Path}${API_VERSION_V1}${Get_DoctorsList}`);
   },

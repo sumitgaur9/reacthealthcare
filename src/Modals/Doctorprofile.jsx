@@ -31,6 +31,9 @@ import styles from './Doctorprofile.module.css';
     })
   };
 
+  const [expertiesArrayData, setExpertiesArrayData] = useState([]);
+
+
   var UploadFile = [];
   var UploadFileName = '';  
 
@@ -91,6 +94,47 @@ import styles from './Doctorprofile.module.css';
 
 
 }, []);
+
+useEffect(() => {
+  const Get_ExpertiseList = async (load) => {
+    let loadResponse = await Api.Get_ExpertiseList(load);
+    if (loadResponse.status) {
+         setExpertiesArrayData(loadResponse.data);
+      } else {
+        setExpertiesArrayData([]);
+      }
+  };
+
+  let dataobj = {};
+  Get_ExpertiseList(dataobj);
+
+}, []);
+
+const Update_DoctorProfile = async () => {
+  var formData = new FormData();
+    formData.append('image', '');
+    if (UploadFile.length && UploadFileName) {
+      formData.append('newimage', UploadFile[0], UploadFileName);
+    } else {
+      formData.append('newimage', '');
+    }
+    formData.append('name', data.name);
+    formData.append('email', data.email);
+    formData.append('phoneno', data.phoneno);
+    formData.append('experties', data.experties);
+    formData.append('charges', data.charges);
+    formData.append('area', data.area);
+    formData.append('qualification', data.qualification);
+    formData.append('id', data.id);
+    formData.append('participantID', data.participantID);
+    formData.append('description', data.description);
+  let loadResponse = await Api.Update_DoctorProfile(formData,props.doctorid);
+  if (loadResponse.status) {
+    props.closeVerifyOTPPopup(); 
+    } else {
+      // setExpertiesArrayData([]);
+    }
+};
     
     return(
             <> 
@@ -142,10 +186,17 @@ import styles from './Doctorprofile.module.css';
                               </div>
                               <div className="form-group">
                                 <label for="exampleFormControlSelect1">Experties</label>
-                                {/* <select className="form-control" formControlName="experties">
-                          <option value=""></option>
-                          <option *ngFor="let opt of expertiesArrayData" [value]="opt.expertiseName">{{opt.expertiseName}}</option>
-                        </select> */}
+                                 <select className="form-control" formControlName="experties" value={data.experties}>
+                                 <option value="" disabled></option>
+                                  {
+                                    expertiesArrayData.map((opt, ind) => {
+                                      console.log(opt)
+                                      return (
+                                        <option  value={opt.expertiseName}>{opt.expertiseName}</option>
+                                              )
+                                    })
+                                  }
+                                    </select> 
                               </div>
                               <div className="form-group">
                                 <div className="input-group mb-2">
@@ -232,7 +283,7 @@ import styles from './Doctorprofile.module.css';
             <Modal.Footer>              
               <div className="buttonSection">
                 <div className="text-center">
-                  <input type="submit" style={{width: '200px',fontWeight: '600'}} value="✔️ &nbsp;&nbsp;Save" class="btn btn-info btn-block rounded-0 py-2" />
+                  <input type="submit" onClick={Update_DoctorProfile}  style={{width: '200px',fontWeight: '600'}} value="✔️ &nbsp;&nbsp;Save" class="btn btn-info btn-block rounded-0 py-2" />
                 </div>
               </div>
             </Modal.Footer>
