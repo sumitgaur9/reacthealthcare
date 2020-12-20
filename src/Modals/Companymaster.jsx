@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal'; 
 
 import styles from './Companymaster.module.css';
-import PlacesAutocomplete from "react-places-autocomplete";
+import Select from 'react-select'
 
 
  export const Companymaster=(props) => {
@@ -22,6 +22,12 @@ import PlacesAutocomplete from "react-places-autocomplete";
     name: '',
     email: '',
   });
+
+  const options = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' }
+  ]
 
  const InputEvent = (event) => {
    const { name, value } = event.target;
@@ -172,22 +178,8 @@ const Update_DoctorProfile = async () => {
                         <div className="card-body p-3">                          
                           <label for="exampleFormControlSelect1">Name</label>
                           <div className="ng-autocomplete" style={{width:'368px'}}>
-                            <PlacesAutocomplete
-                                // getItemValue={(item) => item.label}
-                                // items={[
-                                //     { label: 'apple' },
-                                //     { label: 'banana' },
-                                //     { label: 'pear' }
-                                // ]}
-                                // renderItem={(item, isHighlighted) =>
-                                //     <div style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
-                                //         {item.label}
-                                //     </div>
-                                // }
-                                // value={value}
-                                // onChange={(e) => value = e.target.value}
-                                // onSelect={(val) => value = val}
-                            />
+                          <Select options={options} />
+                          <Select options={options}  isMulti/>
                             {/* <ng-autocomplete 
                               [data]="companyArrayData"
                               [searchKeyword]="keyword"

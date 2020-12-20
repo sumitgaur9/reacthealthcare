@@ -3,6 +3,7 @@ import Api from './api/apiService'
 import { arrayBufferToBase64 } from './utils/utils'
 import styles from "./Doctoreditdisplaylist.module.css";
 import { Doctorprofile } from './Modals/Doctorprofile'
+import { Companymaster } from './Modals/Companymaster'
 
 
 const Doctoreditdisplaylist = () => {
@@ -153,7 +154,9 @@ const Doctoreditdisplaylist = () => {
             </div>
 
             {showVerifyOTPPopup && <Doctorprofile showVerifyOTPPopup={showVerifyOTPPopup}  doctorid={doctorid} closeVerifyOTPPopup={closeVerifyOTPPopup}/>}
+            {/* {showVerifyOTPPopup && <Companymaster showVerifyOTPPopup={showVerifyOTPPopup}  doctorid={doctorid} closeVerifyOTPPopup={closeVerifyOTPPopup}/>} */}
 
+            
     {/* <Doctorprofile showVerifyOTPPopup={showVerifyOTPPopup}  doctorid={doctorid} closeVerifyOTPPopup={closeVerifyOTPPopup}></Doctorprofile>  */}
 
         </>
