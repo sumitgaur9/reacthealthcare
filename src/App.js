@@ -14,6 +14,7 @@ import Medicineslist from './Medicineslist';
 import Labtestlist from './Labtestlist';
 import Labtestpackagelist from './Labtestpackagelist';
 import Otherlinks from './Otherlinks';
+import Paymentlist from './Paymentlist';
 
 // import Navbar from './Navbar';
 
@@ -44,6 +45,7 @@ return (
       <Route exact path="/labtestlist" component={Labtestlist} />
       <Route exact path="/labtestpackagelist" component={Labtestpackagelist} />
       <Route exact path="/otherlinks" component={Otherlinks} />
+      <Route exact path="/paymentlist" component={Paymentlist} />
       
 
     </Switch>

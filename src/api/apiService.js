@@ -9,6 +9,7 @@ import {
     Get_PhysiosList,
     Get_PharmacistsList,
     Get_LabTechniciansList,
+    Get_PaymentLists,
     Get_MedicinesList,
     Get_LabTestsList,
     Get_LabTestsPackageList,
@@ -91,6 +92,14 @@ export default {
   getLabTechniciansList: (load) => {
     return GET(`${Commaon_Path}${API_VERSION_V1}${Get_LabTechniciansList}`);
   },
+  getPaymentsList: (load,paymentTypeEnumKey) => {
+    if(paymentTypeEnumKey!=null){
+      return GET(`${Commaon_Path}${API_VERSION_V1}${Get_PaymentLists}/${paymentTypeEnumKey}`);
+    } else {
+      return GET(`${Commaon_Path}${API_VERSION_V1}${Get_PaymentLists}`);
+    }
+  },
+  
   
   getMedicinesList: (load, companyName) => {
     if (companyName) {
