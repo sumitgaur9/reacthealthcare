@@ -17,6 +17,7 @@ import Otherlinks from './Otherlinks';
 import Paymentlist from './Paymentlist';
 import Phamracistdashboard from './Phamracistdashboard';
 import Nursedashboard from './Nursedashboard';
+import Labtechniciandashboard from './Labtechniciandashboard';
 
 // import Navbar from './Navbar';
 
@@ -50,8 +51,9 @@ return (
       <Route exact path="/paymentlist" component={Paymentlist} />
       <Route exact path="/pharmacistdashboard" component={Phamracistdashboard} />
       <Route exact path="/nursedashboard" component={Nursedashboard} />
+      <Route exact path="/labtechniciandashboard" component={Labtechniciandashboard} />
       
-
+      
     </Switch>
  </div>
 )
