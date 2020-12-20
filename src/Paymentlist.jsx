@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import Api from './api/apiService'
 import { arrayBufferToBase64 } from './utils/utils'
-import stylesNur from "./Labtechicianeditdisplaylist.moduele.css";
+import stylesNur from "./Paymentlist.module.css";
 import { Labtechnicianprofile } from './Modals/Labtechnicianprofile'
 
-const Labtechnicianeditdisplaylist = () => {
+const Paymentlist = () => {
 
     const closeModalHandler = () => {
         setShow(false);
@@ -155,4 +155,4 @@ const Labtechnicianeditdisplaylist = () => {
     )
 }
 
-export default Labtechnicianeditdisplaylist
+export default Paymentlist

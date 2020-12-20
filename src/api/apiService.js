@@ -27,7 +27,8 @@ import {
     Update_PhysioProfile,
     Update_NurseProfile,
     Update_PharmacistProfile,
-    Update_LabTechnicianProfile
+    Update_LabTechnicianProfile,
+    Get_PharmaReqForHomeDel
 } from "../constants/constants";
 
 
@@ -99,6 +100,11 @@ export default {
       return GET(`${Commaon_Path}${API_VERSION_V1}${Get_PaymentLists}`);
     }
   },
+
+  getPharmacyReqForHomeDel: (load) => {
+    return POST(`${Commaon_Path}${API_VERSION_V1}${Get_PharmaReqForHomeDel}`,load);
+  },
+  
   
   
   getMedicinesList: (load, companyName) => {
