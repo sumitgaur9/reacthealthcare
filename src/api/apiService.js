@@ -28,7 +28,8 @@ import {
     Update_NurseProfile,
     Update_PharmacistProfile,
     Update_LabTechnicianProfile,
-    Get_PharmaReqForHomeDel
+    Get_PharmaReqForHomeDel,
+    Get_LabTestsBookings
 } from "../constants/constants";
 
 
@@ -103,6 +104,9 @@ export default {
 
   getPharmacyReqForHomeDel: (load) => {
     return POST(`${Commaon_Path}${API_VERSION_V1}${Get_PharmaReqForHomeDel}`,load);
+  },
+  getLabTestsBooking: (load) => {
+    return POST(`${Commaon_Path}${API_VERSION_V1}${Get_LabTestsBookings}`,load);
   },
   
   

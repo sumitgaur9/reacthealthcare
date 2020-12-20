@@ -87,7 +87,7 @@ const Otherlinks = () => {
                
                 <div class="text-center" style={{marginTop: "5%"}}>
                   <button style={{width: "225px"}} class={stylesNur.btn}><i class="fa fa-tachometer"
-                      aria-hidden="true"></i><span style={{marginLeft:"5px"}}>Nurse Dashboard</span></button>
+                      aria-hidden="true"></i><span style={{marginLeft:"5px"}} onClick={() => redirectTo("/nursedashboard")} >Nurse Dashboard</span></button>
                 </div>
                
                 <div class="text-center" style={{marginTop: "5%"}}>
