@@ -9,6 +9,7 @@ import Patienteditdisplaylist from './Patienteditdisplaylist';
 import Nurseeditdisplaylist from './Nurseeditdisplaylist';
 import Physioeditdisplaylist from './Physioeditdisplaylist';
 import Pharmacisteditdisplaylist from './Pharmacisteditdisplaylist';
+import Labtechicianeditdisplaylist from './Labtechicianeditdisplaylist';
 import Medicineslist from './Medicineslist';
 import Labtestlist from './Labtestlist';
 import Labtestpackagelist from './Labtestpackagelist';
@@ -38,6 +39,7 @@ return (
       <Route exact path="/nurselist" component={Nurseeditdisplaylist} />
       <Route exact path="/physiolist" component={Physioeditdisplaylist} />
       <Route exact path="/pharmacistlist" component={Pharmacisteditdisplaylist} />
+      <Route exact path="/labtechnician" component={Labtechicianeditdisplaylist} />
       <Route exact path="/medicineslist" component={Medicineslist} />
       <Route exact path="/labtestlist" component={Labtestlist} />
       <Route exact path="/labtestpackagelist" component={Labtestpackagelist} />

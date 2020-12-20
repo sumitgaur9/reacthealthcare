@@ -25,7 +25,7 @@ const Navbar = () => {
                 <div className={styles['header-top']}>
                     <div className="container">
                         <a className={styles['navbar-brand']}>
-                        <img style={{ height: '40px',width: '200px'}} src={logo} alt="image" />
+                        <img style={{ height: '40px',width: '200px'}} src={logo} alt="image" onClick={() => redirectTo("/doctorlist")} />
                         </a>
                         <div className={styles['right-header']}>
                             <div className={styles['header-info']} style={{ paddingRight: '110px'}}>

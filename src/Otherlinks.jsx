@@ -98,7 +98,7 @@ const Otherlinks = () => {
                 <div class="text-center" style={{marginTop: "5%"}}>
                   <button style={{width: "225px"}} class={stylesNur.btn}
                     ><i class="fa fa-list" aria-hidden="true"></i><span
-                      style={{marginLeft:"5px"}}>LabTechList</span></button>
+                      style={{marginLeft:"5px"}} onClick={() => redirectTo("/labtechnician")}>LabTechList</span></button>
                 </div>
 
               </div>

@@ -8,6 +8,7 @@ import {
     Get_NursesList,
     Get_PhysiosList,
     Get_PharmacistsList,
+    Get_LabTechniciansList,
     Get_MedicinesList,
     Get_LabTestsList,
     Get_LabTestsPackageList,
@@ -18,12 +19,14 @@ import {
     Get_PharmacistProfile,
     Get_NurseProfile,
     Get_PhysioProfile,
+    Get_LabTechnicianProfile,
     Get_ExpertiseList,
     Update_DoctorProfile,
     Update_PatientProfile,
     Update_PhysioProfile,
     Update_NurseProfile,
-    Update_PharmacistProfile
+    Update_PharmacistProfile,
+    Update_LabTechnicianProfile
 } from "../constants/constants";
 
 
@@ -42,6 +45,9 @@ export default {
   },
   getPhysioProfile: (load,rolebasedid) => {
     return GET(`${Commaon_Path}${API_VERSION_V1}${Get_PhysioProfile}/${rolebasedid}`);
+  },  
+  getLabtechnicianProfile: (load,rolebasedid) => {
+    return GET(`${Commaon_Path}${API_VERSION_V1}${Get_LabTechnicianProfile}/${rolebasedid}`);
   },  
   Get_ExpertiseList: (load) => {
     return GET(`${Commaon_Path}${API_VERSION_V1}${Get_ExpertiseList}`);
@@ -62,6 +68,9 @@ export default {
   Update_PhysioProfile: (load, id, ) => {
     return PUT(`${Commaon_Path}${API_VERSION_V1}${Update_PhysioProfile}/${id}`,load);
   },
+  Update_LabTechnicianProfile: (load, id, ) => {
+    return PUT(`${Commaon_Path}${API_VERSION_V1}${Update_LabTechnicianProfile}/${id}`,load);
+  },
 
   
   getDoctorsList: (load) => {
@@ -78,6 +87,9 @@ export default {
   },
   getPharmacistsList: (load) => {
     return GET(`${Commaon_Path}${API_VERSION_V1}${Get_PharmacistsList}`);
+  },
+  getLabTechniciansList: (load) => {
+    return GET(`${Commaon_Path}${API_VERSION_V1}${Get_LabTechniciansList}`);
   },
   
   getMedicinesList: (load, companyName) => {
