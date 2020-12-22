@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Api from './api/apiService'
 import { useHistory } from "react-router-dom";
 // import { ModalForgotPassword } from './Modals/Forgotpassword'
@@ -12,18 +12,26 @@ import { FaEnvelope, FaKey, FaFacebook, FaGoogle, FaTwitter, } from 'react-icons
 
 const Login = () => {
 
-     // const [show, setShow] = useState(false);
-     const closeModalHandler = () => {
+    // const [show, setShow] = useState(false);
+    const [submitted, setsubmitted] = useState(false);
+    const [errorMessage, seterrorMessage] = useState('');
+
+    const [passwordType, setpasswordType] = useState('password');
+    const [isTandCChequed, setisTandCChequed] = useState(false);
+    const [inActiveUserRegisterMsg, setinActiveUserRegisterMsg] = useState('');
+    const [isActivateAccountRequired, setisActivateAccountRequired] = useState(false);
+
+
+    const closeModalHandler = () => {
         setShow(false);
     }
     const [inputForVerifyOTP1, setinputForVerifyOTP1] = useState({
-            userEmail: '',
-            OTPAPIValue: '',
-            regMobileNo:'',
-        });
+        userEmail: '',
+        OTPAPIValue: '',
+        regMobileNo: '',
+    });
 
-        
-    const [isActivateAccountRequired, setisActivateAccountRequired] = useState(false);
+
 
     const [show, setShow] = useState(false);
 
@@ -51,12 +59,9 @@ const Login = () => {
         email: '',
         password: '',
     });
-
-
     const history = useHistory();
-
-    const redirectTo =  (path) => {
-            history.push(path);
+    const redirectTo = (path) => {
+        history.push(path);
     }
 
 
@@ -70,9 +75,48 @@ const Login = () => {
         })
     };
 
+    useEffect(() => {
+        let object = JSON.parse(window.localStorage.getItem("currentuseremailpassword"));
+        if (object && object !== null) {
+            autoFillCredentials();
+        }
+    }, []);
+
+    function readTandC(event) {
+        setisTandCChequed(event.target.checked)
+    }
+    function rememberCredentials() {
+        let obj = {
+            email: data.email.toLowerCase(),
+            password: data.password,
+        }
+        localStorage.setItem("currentuseremailpassword", JSON.stringify(obj));
+    }
+
+    function autoFillCredentials() {
+        let object = JSON.parse(window.localStorage.getItem("currentuseremailpassword"));
+        if (object && object != null && object.email && object.email != '' && object.password && object.password != '') {
+            setData({
+                email: object.email,
+                password: object.password
+            })   //not set here need to check it 
+        }
+        let obj = {
+            email: data.email,
+            password: data.password
+
+        }
+        sessionStorage.setItem("currentusermedata", JSON.stringify(obj));
+    }
+
 
     const formSubmit = (e) => {
         e.preventDefault();
+        setsubmitted(true);
+        setisActivateAccountRequired(false);
+        // if (this.loginInfo.invalid) {
+        //     return;
+        //   }
         alert(`
         My email id is ${data.email}. My password is ${data.password}.
         `);
@@ -87,6 +131,16 @@ const Login = () => {
         let loadResponse = await Api.login(load);
         if (loadResponse.status) {
             alert("success login");
+            console.log("loginUserResponseData..", data);
+            if (loadResponse.data.token && loadResponse.data.token != "" && loadResponse.data.token != null) {
+                let datainput = {};
+                //this.router.navigate(['/home']);
+                if (isTandCChequed) {
+                    rememberCredentials();
+                }
+                //this.utilityservice.navigateToSpecificPage(data.user.role);
+                // this.utilityservice.onLoginSuccessfully.next();
+            }
             redirectTo('/doctorlist')
         }
     };
@@ -94,15 +148,13 @@ const Login = () => {
     function forgotPasswordSet(data) {
         setinputForVerifyOTP1({
             userEmail: data
-          });
-      setTimeout(() => {
-        handleClose();
-        GenerateOTP();
-      }, 300);
-    
+        });
+        setTimeout(() => {
+            handleClose();
+            GenerateOTP();
+        }, 300);
+
     }
-
-
 
     function GenerateOTP() {
         if (inputForVerifyOTP1.userEmail == '' || inputForVerifyOTP1.userEmail == undefined) {
@@ -127,14 +179,14 @@ const Login = () => {
         }
     };
 
-    function  verifyOTPSet(email) {
+    function verifyOTPSet(email) {
         console.log("valuevaluevalue", email);
         setinputForVerifyOTP1(prev => ({
             ...prev, userEmail: email
         }))
         closeVerifyOTPPopup();
         openPasswordSetupPopup();
-      }
+    }
 
     return (
         <>
@@ -167,7 +219,7 @@ const Login = () => {
                                     </div>
 
                                     <div className="row align-items-center remember" style={{color:'#fff'}}>
-                                        <input type="checkbox" id="readtandc" style={{width: '20px',height: '20px',marginLeft: '15px',marginRight: '5px'}} />Remember Me
+                                        <input type="checkbox" id="readtandc" style={{width: '20px',height: '20px',marginLeft: '15px',marginRight: '5px'}}  onChange={readTandC} />Remember Me
 					                </div>
                                     <div className="form-group">
                                         <button className="btn float-right login_btn" style={{
@@ -180,7 +232,7 @@ const Login = () => {
                             </div>
                             <div  className="card-footer">
                                 <div className="d-flex justify-content-center" style={{color:'#fff'}}>
-                                    Don't have an account?<a routerLink="/registration" style={{color: '#007bff',textDecoration:'none',backgroundColor:'transparent'}}>Sign Up</a>
+                                    Don't have an account?<a onClick={()=>redirectTo('/registration')} style={{color: '#007bff',textDecoration:'none',backgroundColor:'transparent'}}>Sign Up</a>
                                 </div>
 
                                 <div className="d-flex justify-content-center">

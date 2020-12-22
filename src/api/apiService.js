@@ -29,7 +29,9 @@ import {
     Update_PharmacistProfile,
     Update_LabTechnicianProfile,
     Get_PharmaReqForHomeDel,
-    Get_LabTestsBookings
+    Get_LabTestsBookings,
+    registration,
+    GenerateOTPToPhone
 } from "../constants/constants";
 
 
@@ -138,6 +140,13 @@ export default {
   ForgotPassword: async (load) => {
     return POST(`${Commaon_Path}${API_VERSION_V1}${Forgot_Password}`, load);
   }, 
+
+  registration: (load) => {
+    return POST(`${Commaon_Path}${API_VERSION_V1}${registration}`, load);
+  },
+  GenerateOTPToPhone: (load) => {
+    return POST(`${Commaon_Path}${API_VERSION_V1}${GenerateOTPToPhone}`, load);
+  },
 //   updateLoadStatus: (userId, bidId, status) => {
 //     return PUT(`${Commaon_Path}/${API_VERSION_V1}/bidStatus`, {
 //       bidId,
