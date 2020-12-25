@@ -31,7 +31,9 @@ import {
     Get_PharmaReqForHomeDel,
     Get_LabTestsBookings,
     registration,
-    GenerateOTPToPhone
+    GenerateOTPToPhone,
+    Get_CompanyList,
+    Save_Company
 } from "../constants/constants";
 
 
@@ -57,6 +59,14 @@ export default {
   Get_ExpertiseList: (load) => {
     return GET(`${Commaon_Path}${API_VERSION_V1}${Get_ExpertiseList}`);
   },
+  Get_CompanyList: (load) => {
+    return GET(`${Commaon_Path}${API_VERSION_V1}${Get_CompanyList}`);
+  },
+
+  Save_Company: (load) => {
+    return POST(`${Commaon_Path}${API_VERSION_V1}${Save_Company}`,load);
+  },
+  
 
   Update_DoctorProfile: (load,id) => {
     return PUT(`${Commaon_Path}${API_VERSION_V1}${Update_DoctorProfile}/${id}`,load);
