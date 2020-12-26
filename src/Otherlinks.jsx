@@ -5,6 +5,7 @@ import stylesNur from "./Otherlinks.module.css";
 import { useHistory } from "react-router-dom";
 import { Companymaster } from './Modals/Companymaster'
 import { Expertisemaster } from './Modals/Expertisemaster'
+import { Diseasemaster } from './Modals/Diseasemaster'
 
 const Otherlinks = () => {
 
@@ -19,7 +20,7 @@ const Otherlinks = () => {
      }
 
 
-     //openVerifyOTPPopup
+     //
      const [showExpertiseMasterPopup, setShowExpertiseMasterPopup] = useState(false);
      const closeExpertiseMasterPopup = () => setShowExpertiseMasterPopup(false);
 
@@ -27,7 +28,14 @@ const Otherlinks = () => {
       setShowExpertiseMasterPopup(true)
      }
 
+    //
+    const [showDiseaseMasterPopup, setShowDiseaseMasterPopup] = useState(false);
+    const closeDiseaseMasterPopup = () => setShowDiseaseMasterPopup(false);
 
+    function openDiseaseMasterPopup(){
+      setShowDiseaseMasterPopup(true)
+    }
+     
      
      
 
@@ -224,8 +232,8 @@ const Otherlinks = () => {
                 </div>
 
                 <div class="text-center" style={{marginTop: "5%"}}>
-                  <button style={{width: "225px"}} class={stylesNur.btn}
-                    ><i class="fa fa-plus-circle" aria-hidden="true"></i><span
+                  <button style={{width: "225px"}} class={stylesNur.btn} onClick={() => openDiseaseMasterPopup()}>
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i><span
                       style={{marginLeft:"5px"}}>Diseases Master</span></button>
                 </div>
                 <div class="text-center" style={{marginTop: "5%"}}>
@@ -248,7 +256,10 @@ const Otherlinks = () => {
 </div>
             
 {showCompanyMasterPopup && <Companymaster showCompanyMasterPopup={showCompanyMasterPopup} closeCompanyMasterPopup={closeCompanyMasterPopup}/>}
+
 {showExpertiseMasterPopup && <Expertisemaster showExpertiseMasterPopup={showExpertiseMasterPopup} closeExpertiseMasterPopup={closeExpertiseMasterPopup}/>}
+
+{showDiseaseMasterPopup && <Diseasemaster showDiseaseMasterPopup={showDiseaseMasterPopup} closeDiseaseMasterPopup={closeDiseaseMasterPopup}/>}
 
         </>
     )

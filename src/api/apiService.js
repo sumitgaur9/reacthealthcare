@@ -34,7 +34,8 @@ import {
     GenerateOTPToPhone,
     Get_CompanyList,
     Save_Company,
-    Save_Expertise
+    Save_Expertise,
+    Save_Disease
 } from "../constants/constants";
 
 
@@ -70,6 +71,9 @@ export default {
   },
   Save_Expertise: (load) => {
     return POST(`${Commaon_Path}${API_VERSION_V1}${Save_Expertise}`,load);
+  },  
+  Save_Disease: (load) => {
+    return POST(`${Commaon_Path}${API_VERSION_V1}${Save_Disease}`,load);
   },
   
 
