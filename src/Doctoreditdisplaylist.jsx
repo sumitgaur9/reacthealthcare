@@ -23,7 +23,7 @@ const Doctoreditdisplaylist = () => {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
+    
     const [doctorListData, setDoctorListData] = useState([]);
 
     //openVerifyOTPPopup

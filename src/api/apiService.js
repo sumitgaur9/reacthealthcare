@@ -33,7 +33,8 @@ import {
     registration,
     GenerateOTPToPhone,
     Get_CompanyList,
-    Save_Company
+    Save_Company,
+    Save_Expertise
 } from "../constants/constants";
 
 
@@ -62,9 +63,13 @@ export default {
   Get_CompanyList: (load) => {
     return GET(`${Commaon_Path}${API_VERSION_V1}${Get_CompanyList}`);
   },
+  
 
   Save_Company: (load) => {
     return POST(`${Commaon_Path}${API_VERSION_V1}${Save_Company}`,load);
+  },
+  Save_Expertise: (load) => {
+    return POST(`${Commaon_Path}${API_VERSION_V1}${Save_Expertise}`,load);
   },
   
 

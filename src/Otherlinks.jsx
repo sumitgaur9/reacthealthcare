@@ -3,10 +3,33 @@ import Api from './api/apiService'
 import { arrayBufferToBase64 } from './utils/utils'
 import stylesNur from "./Otherlinks.module.css";
 import { useHistory } from "react-router-dom";
+import { Companymaster } from './Modals/Companymaster'
+import { Expertisemaster } from './Modals/Expertisemaster'
 
 const Otherlinks = () => {
 
     const [doctorListData, setDoctorListData] = useState([]);
+
+     //openVerifyOTPPopup
+     const [showCompanyMasterPopup, setShowCompanyMasterPopup] = useState(false);
+     const closeCompanyMasterPopup = () => setShowCompanyMasterPopup(false);
+
+     function openCompanyMasterPopup(){
+      setShowCompanyMasterPopup(true)
+     }
+
+
+     //openVerifyOTPPopup
+     const [showExpertiseMasterPopup, setShowExpertiseMasterPopup] = useState(false);
+     const closeExpertiseMasterPopup = () => setShowExpertiseMasterPopup(false);
+
+     function openExpertiseMasterPopup(){
+      setShowExpertiseMasterPopup(true)
+     }
+
+
+     
+     
 
     const history = useHistory();
 
@@ -206,13 +229,13 @@ const Otherlinks = () => {
                       style={{marginLeft:"5px"}}>Diseases Master</span></button>
                 </div>
                 <div class="text-center" style={{marginTop: "5%"}}>
-                  <button style={{width: "225px"}} class={stylesNur.btn}
-                    ><i class="fa fa-plus-circle" aria-hidden="true"></i><span
+                  <button style={{width: "225px"}} class={stylesNur.btn} onClick={() => openExpertiseMasterPopup()}>
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i><span
                       style={{marginLeft:"5px"}}>Experties Master</span></button>
                 </div>
                 <div class="text-center" style={{marginTop: "5%"}}>
-                  <button style={{width: "225px"}} class={stylesNur.btn}><i class="fa fa-plus-circle"
-                      aria-hidden="true"></i><span style={{marginLeft:"5px"}}>Company Master</span></button>
+                  <button style={{width: "225px"}} class={stylesNur.btn} onClick={() => openCompanyMasterPopup()}><i class="fa fa-plus-circle"
+                      aria-hidden="true" ></i><span style={{marginLeft:"5px"}}>Company Master</span></button>
                 </div>
 
               </div>
@@ -224,6 +247,9 @@ const Otherlinks = () => {
   </div>
 </div>
             
+{showCompanyMasterPopup && <Companymaster showCompanyMasterPopup={showCompanyMasterPopup} closeCompanyMasterPopup={closeCompanyMasterPopup}/>}
+{showExpertiseMasterPopup && <Expertisemaster showExpertiseMasterPopup={showExpertiseMasterPopup} closeExpertiseMasterPopup={closeExpertiseMasterPopup}/>}
+
         </>
     )
 }
