@@ -35,7 +35,9 @@ import {
     Get_CompanyList,
     Save_Company,
     Save_Expertise,
-    Save_Disease
+    Save_Disease,
+    Get_WebsiteTextDataByLocationEnum,
+    SaveUpdate_WebsiteTextData
 } from "../constants/constants";
 
 
@@ -64,6 +66,9 @@ export default {
   Get_CompanyList: (load) => {
     return GET(`${Commaon_Path}${API_VERSION_V1}${Get_CompanyList}`);
   },
+  Get_WebsiteTextDataByLocationEnum: (load,rolebasedid) => {
+    return GET(`${Commaon_Path}${API_VERSION_V1}${Get_WebsiteTextDataByLocationEnum}/${rolebasedid}`);
+  },  
   
 
   Save_Company: (load) => {
@@ -72,9 +77,10 @@ export default {
   Save_Expertise: (load) => {
     return POST(`${Commaon_Path}${API_VERSION_V1}${Save_Expertise}`,load);
   },  
-  Save_Disease: (load) => {
-    return POST(`${Commaon_Path}${API_VERSION_V1}${Save_Disease}`,load);
+  SaveUpdate_WebsiteTextData: (load) => {
+    return POST(`${Commaon_Path}${API_VERSION_V1}${SaveUpdate_WebsiteTextData}`,load);
   },
+  
   
 
   Update_DoctorProfile: (load,id) => {

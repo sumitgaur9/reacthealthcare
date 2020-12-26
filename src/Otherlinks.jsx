@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import { Companymaster } from './Modals/Companymaster'
 import { Expertisemaster } from './Modals/Expertisemaster'
 import { Diseasemaster } from './Modals/Diseasemaster'
+import { WebsiteTextData } from './Modals/WebsiteTextData'
 
 const Otherlinks = () => {
 
@@ -35,6 +36,18 @@ const Otherlinks = () => {
     function openDiseaseMasterPopup(){
       setShowDiseaseMasterPopup(true)
     }
+
+
+    //
+    const [showWebsiteTextDataPopup, setShowWebsiteTextDataPopup] = useState(false);
+    const closeWebsiteTextDataPopup = () => setShowWebsiteTextDataPopup(false);
+
+    function openWebsiteTextDataPopup(){
+      setShowWebsiteTextDataPopup(true)
+    }
+
+
+    
      
      
      
@@ -227,7 +240,7 @@ const Otherlinks = () => {
                 </div>
 
                 <div class="text-center" style={{marginTop: "5%"}}>
-                  <button style={{width: "225px"}} class={stylesNur.btn}><i class="fa fa-text-width"
+                  <button style={{width: "225px"}} class={stylesNur.btn} onClick={() => openWebsiteTextDataPopup()}><i class="fa fa-text-width"
                       aria-hidden="true"></i><span style={{marginLeft:"5px"}}>Web Text</span></button>
                 </div>
 
@@ -260,6 +273,8 @@ const Otherlinks = () => {
 {showExpertiseMasterPopup && <Expertisemaster showExpertiseMasterPopup={showExpertiseMasterPopup} closeExpertiseMasterPopup={closeExpertiseMasterPopup}/>}
 
 {showDiseaseMasterPopup && <Diseasemaster showDiseaseMasterPopup={showDiseaseMasterPopup} closeDiseaseMasterPopup={closeDiseaseMasterPopup}/>}
+
+{showWebsiteTextDataPopup && <WebsiteTextData showWebsiteTextDataPopup={showWebsiteTextDataPopup} closeWebsiteTextDataPopup={closeWebsiteTextDataPopup}/>}
 
         </>
     )
