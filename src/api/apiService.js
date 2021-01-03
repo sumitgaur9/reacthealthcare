@@ -37,7 +37,9 @@ import {
     Save_Expertise,
     Save_Disease,
     Get_WebsiteTextDataByLocationEnum,
-    SaveUpdate_WebsiteTextData
+    SaveUpdate_WebsiteTextData,
+    Get_WebsiteImageByLocationEnum,
+    SaveUpdate_UploadWebsiteImages
 } from "../constants/constants";
 
 
@@ -68,7 +70,11 @@ export default {
   },
   Get_WebsiteTextDataByLocationEnum: (load,rolebasedid) => {
     return GET(`${Commaon_Path}${API_VERSION_V1}${Get_WebsiteTextDataByLocationEnum}/${rolebasedid}`);
-  },  
+  }, 
+  Get_WebsiteImageByLocationEnum: (load,rolebasedid) => {
+    return GET(`${Commaon_Path}${API_VERSION_V1}${Get_WebsiteImageByLocationEnum}/${rolebasedid}`);
+  },   
+  
   
 
   Save_Company: (load) => {
@@ -79,6 +85,9 @@ export default {
   },  
   SaveUpdate_WebsiteTextData: (load) => {
     return POST(`${Commaon_Path}${API_VERSION_V1}${SaveUpdate_WebsiteTextData}`,load);
+  },
+  SaveUpdate_UploadWebsiteImages: (load) => {
+    return POST(`${Commaon_Path}${API_VERSION_V1}${SaveUpdate_UploadWebsiteImages}`,load);
   },
   
   

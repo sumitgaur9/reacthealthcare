@@ -7,6 +7,7 @@ import { Companymaster } from './Modals/Companymaster'
 import { Expertisemaster } from './Modals/Expertisemaster'
 import { Diseasemaster } from './Modals/Diseasemaster'
 import { WebsiteTextData } from './Modals/WebsiteTextData'
+import { ImageUpload } from './Modals/ImageUpload'
 
 const Otherlinks = () => {
 
@@ -46,6 +47,14 @@ const Otherlinks = () => {
       setShowWebsiteTextDataPopup(true)
     }
 
+     //
+     const [showImageUploadPopup, setShowImageUploadPopup] = useState(false);
+     const closeImageUploadPopup = () => setShowImageUploadPopup(false);
+ 
+     function openImageUploadDataPopup(){
+      setShowImageUploadPopup(true)
+     }
+ 
 
     
      
@@ -235,7 +244,7 @@ const Otherlinks = () => {
                 </div>
 
                 <div class="text-center" style={{marginTop: "5%"}}>
-                  <button style={{width: "225px"}} class={stylesNur.btn}><i class="fa fa-upload"
+                  <button style={{width: "225px"}} class={stylesNur.btn}  onClick={() => openImageUploadDataPopup()}><i class="fa fa-upload"
                       aria-hidden="true"></i><span style={{marginLeft:"5px"}}>Image Upload</span></button>
                 </div>
 
@@ -275,6 +284,8 @@ const Otherlinks = () => {
 {showDiseaseMasterPopup && <Diseasemaster showDiseaseMasterPopup={showDiseaseMasterPopup} closeDiseaseMasterPopup={closeDiseaseMasterPopup}/>}
 
 {showWebsiteTextDataPopup && <WebsiteTextData showWebsiteTextDataPopup={showWebsiteTextDataPopup} closeWebsiteTextDataPopup={closeWebsiteTextDataPopup}/>}
+
+{showImageUploadPopup && <ImageUpload showImageUploadPopup={showImageUploadPopup} closeImageUploadPopup={closeImageUploadPopup}/>}
 
         </>
     )

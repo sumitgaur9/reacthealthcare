@@ -101,4 +101,17 @@ export const login = "users/login";
     export const Save_UploadPrescriptionForMedicineApproval = "Save_UploadPrescriptionForMedicineApproval";
     export const Get_UploadPrescriptionForMedicineApprovalsList = "Get_UploadPrescriptionForMedicineApprovalsList";
     export const Save_ApproveMedicineReqUsingPrescription = "Save_ApproveMedicineReqUsingPrescription";
-    export const Update_BuyStatusForApprovedMedicine = "Update_BuyStatusForApprovedMedicine";    
+    export const Update_BuyStatusForApprovedMedicine = "Update_BuyStatusForApprovedMedicine";   
+    
+    
+    export const HomePageImageSize={
+        TopNavImage:'1349x650',
+        WhatWeDo:'540x360',
+        Servicesimage1:'255x169',
+        Servicesimage2:'255x169',
+        Servicesimage3:'255x169',
+        Servicesimage4:'255x169',
+        SpecialistClinicimage1:'310x310',
+        SpecialistClinicimage2:'310x310',
+        SpecialistClinicimage3:'310x310',
+    }
