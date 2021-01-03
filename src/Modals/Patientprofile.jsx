@@ -31,16 +31,17 @@ import styles from './Patientprofile.module.css';
     })
   };
 
-  var UploadFile = [];
-  var UploadFileName = '';  
+  const [UploadFile, setUploadFile]= useState([]);
+  const [UploadFileName, setUploadFileName]= useState('');
 
   const uploadFile = (fileInput) => {
     if (fileInput.length === 0) {
       return;
     }
     //setUploadFile(<Array<File>>fileInput.target.files);
-    UploadFile[0] = fileInput.target.files[0]; 
-    UploadFileName = UploadFile[0].name;
+    
+    setUploadFile(fileInput.target.files);
+    setUploadFileName(fileInput.target.files[0].name);
     console.log("UploadFile",UploadFile);
     console.log("UploadFileName",UploadFileName);
     main();
