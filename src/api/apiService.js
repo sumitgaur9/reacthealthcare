@@ -39,7 +39,13 @@ import {
     Get_WebsiteTextDataByLocationEnum,
     SaveUpdate_WebsiteTextData,
     Get_WebsiteImageByLocationEnum,
-    SaveUpdate_UploadWebsiteImages
+    SaveUpdate_UploadWebsiteImages,
+    Get_IndividualToPackageLabTestCount,
+    Get_CommonDashboardCount,
+    Get_LabTestWiseTestCount,
+    Get_DoctorWiseApptCount,
+    Get_AppointmentsByPatientID,
+
 } from "../constants/constants";
 
 
@@ -160,6 +166,57 @@ export default {
   getLabTestsPackageList: (load) => {
     return GET(`${Commaon_Path}${API_VERSION_V1}${Get_LabTestsPackageList}`);
   },
+
+
+   //dashboard
+
+  
+   Get_IndividualToPackageLabTestCount: (load) => {
+    return GET(`${Commaon_Path}${API_VERSION_V1}${Get_IndividualToPackageLabTestCount}`);
+  },
+  Get_CommonDashboardCount: (load) => {
+    return GET(`${Commaon_Path}${API_VERSION_V1}${Get_CommonDashboardCount}`);
+  },
+
+  Get_LabTestWiseTestCount: (load,patientID) => {
+    let APIURL;
+    if (patientID) {
+      return GET(`${Commaon_Path}${API_VERSION_V1}${Get_LabTestWiseTestCount}/${patientID}`);
+    }
+    else {
+      return GET(`${Commaon_Path}${API_VERSION_V1}${Get_LabTestWiseTestCount}`);
+
+    }
+  },
+  Get_DoctorWiseApptCount: (load,patientID) => {
+    let APIURL;
+    if (patientID) {
+      return GET(`${Commaon_Path}${API_VERSION_V1}${Get_DoctorWiseApptCount}/${patientID}`);
+    }
+    else {
+      return GET(`${Commaon_Path}${API_VERSION_V1}${Get_DoctorWiseApptCount}`);
+    }
+  },
+
+  Get_AppointmentsByPatientID: (load,patientID) => {
+    let APIURL;
+    if (patientID) {
+      return GET(`${Commaon_Path}${API_VERSION_V1}${Get_AppointmentsByPatientID}/${patientID}`);
+    }
+    else {
+      return GET(`${Commaon_Path}${API_VERSION_V1}${Get_AppointmentsByPatientID}`);
+    }
+  },
+  
+  Get_LabTestsBookings: async (load) => {
+    return POST(`${Commaon_Path}${API_VERSION_V1}${Get_LabTestsBookings}`, load);
+  }, 
+
+  Get_DoctorsList: (load) => {
+    return GET(`${Commaon_Path}${API_VERSION_V1}${Get_DoctorsList}`);
+  },
+
+
   
   
 

@@ -1,0 +1,20 @@
+.btn {
+    background-color: DodgerBlue;
+    border: none;
+    color: white;
+    padding: 12px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: left;
+  }
+  
+  /* Darker background on mouse-over */
+  .btn:hover {
+    background-color: #39b49b;
+  }
+  .odd{
+    background-color: #85e0ce;
+  }
+  .even{
+    background-color:#e5f9f5;
+  }
