@@ -20,6 +20,7 @@ import Nursedashboard from './Nursedashboard';
 import Labtechniciandashboard from './Labtechniciandashboard';
 import Registration from './Registration';
 import Patientdashboard from './Patientdashboard';
+import Doctordashboard from './Doctordashboard';
 
 
 
@@ -58,6 +59,7 @@ return (
       <Route exact path="/labtechniciandashboard" component={Labtechniciandashboard} />
       <Route exact path="/registration" component={Registration} />
       <Route exact path="/patientdashboard" component={Patientdashboard} />
+      <Route exact path="/doctordashboard" component={Doctordashboard} />
 
       
       

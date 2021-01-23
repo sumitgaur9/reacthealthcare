@@ -45,6 +45,11 @@ import {
     Get_LabTestWiseTestCount,
     Get_DoctorWiseApptCount,
     Get_AppointmentsByPatientID,
+    Get_DiseaseWiseApptCount,
+    Get_PharmacistWiseApptCount,
+    Get_MonthlyHomeOnlineApptCount,
+    Get_PatientMedicinesHomeDelivery,
+    Get_AppointmentsByDocID
 
 } from "../constants/constants";
 
@@ -207,6 +212,50 @@ export default {
       return GET(`${Commaon_Path}${API_VERSION_V1}${Get_AppointmentsByPatientID}`);
     }
   },
+
+
+  Get_DiseaseWiseApptCount: (load,doctorID) => {
+    let APIURL;
+    if (doctorID) {
+      return GET(`${Commaon_Path}${API_VERSION_V1}${Get_DiseaseWiseApptCount}/${doctorID}`);
+    }
+    else {
+      return GET(`${Commaon_Path}${API_VERSION_V1}${Get_DiseaseWiseApptCount}`);
+    }
+  },
+  Get_PharmacistWiseApptCount: (load,doctorID) => {
+    let APIURL;
+    if (doctorID) {
+      return GET(`${Commaon_Path}${API_VERSION_V1}${Get_PharmacistWiseApptCount}/${doctorID}`);
+    }
+    else {
+      return GET(`${Commaon_Path}${API_VERSION_V1}${Get_PharmacistWiseApptCount}`);
+    }
+  },
+  Get_MonthlyHomeOnlineApptCount: (load,doctorID) => {
+    let APIURL;
+    if (doctorID) {
+      return GET(`${Commaon_Path}${API_VERSION_V1}${Get_MonthlyHomeOnlineApptCount}/${doctorID}`);
+    }
+    else {
+      return GET(`${Commaon_Path}${API_VERSION_V1}${Get_MonthlyHomeOnlineApptCount}`);
+    }
+  },
+  Get_PatientMedicinesHomeDelivery: (load,doctorID) => {
+    let APIURL;
+    if (doctorID) {
+      return GET(`${Commaon_Path}${API_VERSION_V1}${Get_PatientMedicinesHomeDelivery}/${doctorID}`);
+    }
+    else {
+      return GET(`${Commaon_Path}${API_VERSION_V1}${Get_PatientMedicinesHomeDelivery}`);
+    }
+  },
+  
+
+  
+
+  
+  
   
   Get_LabTestsBookings: async (load) => {
     return POST(`${Commaon_Path}${API_VERSION_V1}${Get_LabTestsBookings}`, load);
@@ -215,6 +264,10 @@ export default {
   Get_DoctorsList: (load) => {
     return GET(`${Commaon_Path}${API_VERSION_V1}${Get_DoctorsList}`);
   },
+ 
+  Get_AppointmentsByDocID: async (load) => {
+    return POST(`${Commaon_Path}${API_VERSION_V1}${Get_AppointmentsByDocID}`, load);
+  }, 
 
 
   
