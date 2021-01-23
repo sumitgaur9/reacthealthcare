@@ -481,6 +481,9 @@ let temppharmaReqForHomeDelData=[];
     }
   }
 
+  function openBookAppointmentPopup(){
+
+  }
 
 
 
@@ -502,16 +505,15 @@ let temppharmaReqForHomeDelData=[];
               </div>
               <div style={{float:'left',width:'13%'}}>
                 <div className="text-center">
-                  {/* <button class="btn" style="width: 200px;"
-                    *ngIf="currentUser.user.role==0 || currentUser.user.role==11"
-                    (click)="openBookAppointmentPopup()"><i class="fa fa-book" aria-hidden="true"></i><span
-                      style="margin-left:5px;">Book Appointment</span></button> */}
+                  <button className={stylesPatDesh.btn} style={{width: '200px'}}
+                    onClick={() => openBookAppointmentPopup()}><i className="fa fa-book" aria-hidden="true"></i><span
+                      style={{marginLeft:'5px'}}>Book Appointment</span></button>
                 </div>
               </div>
               <div style={{float:'left',marginLeft:'4%',width:'13%'}}>
                 <div className="text-center">
-                  {/* <button class="btn" style="width: 200px;" (click)="openGetLabTest()"><i class="fa fa-list"
-                    aria-hidden="true"></i><span style="margin-left:5px;">Lab Tests List</span></button> */}
+                   <button className={stylesPatDesh.btn} style={{width: '200px'}} onClick={() => openBookAppointmentPopup()}><i className="fa fa-list"
+                    aria-hidden="true"></i><span style={{marginLeft:'5px'}}>Lab Tests List</span></button> 
                 </div>
               </div>
             </div>
@@ -635,7 +637,7 @@ let temppharmaReqForHomeDelData=[];
       <br/>
 
 
- <div class="row">
+ <div className="row">
         <div className="col-4 d-flex order-2 order-xxl-3">
           <div className="card flex-fill w-100">
             <div className="card-header">
@@ -756,7 +758,7 @@ let temppharmaReqForHomeDelData=[];
 
 
                               <tr>
-                                            <td class="d-none d-xl-table-cell">{data.doctorName}</td>
+                                            <td className="d-none d-xl-table-cell">{data.doctorName}</td>
 
                               <td className="d-none d-xl-table-cell">{data.patientNname}</td>
                               <td className="d-none d-md-table-cell">{data.patientEmail}</td>
@@ -765,13 +767,13 @@ let temppharmaReqForHomeDelData=[];
 
 
 
-                              <td class="d-none d-md-table-cell">{data.appointmentDate.substr(8, 10)}/{data.appointmentDate.substr(5, 2)}/{data.appointmentDate.substr(0, 4)}</td> 
-                  <td class="d-none d-md-table-cell">{data.timeSlotValue}</td>
+                              <td className="d-none d-md-table-cell">{data.appointmentDate.substr(8, 10)}/{data.appointmentDate.substr(5, 2)}/{data.appointmentDate.substr(0, 4)}</td> 
+                  <td className="d-none d-md-table-cell">{data.timeSlotValue}</td>
                   <td>
-{data.isPaymentDone?  <a   class="btn" style={{fontSize:"13px"}}><i
-                        class="fa fa-rupee" aria-hidden="true"></i>
-                      Make Payment</a>:  <a  class="btn"
-                      style={{fontSize:"13px",backgroundColor: "green",cursor: "not-allowed"}}><i class="fa fa-paypal"
+{data.isPaymentDone?  <a   className="btn" style={{fontSize:"13px"}}><i
+                        className="fa fa-rupee" aria-hidden="true"></i>
+                      Make Payment</a>:  <a  className="btn"
+                      style={{fontSize:"13px",backgroundColor: "green",cursor: "not-allowed"}}><i className="fa fa-paypal"
                         aria-hidden="true"></i>
                       Payment Done</a>}
                   
@@ -853,7 +855,7 @@ let temppharmaReqForHomeDelData=[];
                   <td>
                     <a
                       href="https://mongowithnode.herokuapp.com/api/userModel/Get_UploadedTestReportbyBookLabTestID/{{data._id}}"
-                      class="btn" style={{fontSize:"13px"}}><i class="fa fa-download" aria-hidden="true"></i>
+                      className="btn" style={{fontSize:"13px"}}><i className="fa fa-download" aria-hidden="true"></i>
                       Download</a>
                   </td>:null}
 

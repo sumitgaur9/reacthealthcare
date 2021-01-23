@@ -124,12 +124,12 @@ const Otherlinks = () => {
                 <div class="text-center" style={{marginTop: '5%'}}>
                   <button style={{width: '225px'}}
                     class={stylesNur.btn}><i class="fa fa-tachometer" aria-hidden="true"></i><span
-                      style={{marginLeft:'5px'}}>Patient Dashboard</span></button>
+                      style={{marginLeft:'5px'}} onClick={() => redirectTo("/patientdashboard")}>Patient Dashboard</span></button>
                 </div>
                 <div class="text-center" style={{marginTop: '5%'}}>
                   <button style={{width: "225px"}}
                     class={stylesNur.btn}><i class="fa fa-tachometer" aria-hidden="true"></i><span
-                      style={{marginLeft:"5px"}}>Doctor Dashboard</span></button>
+                      style={{marginLeft:"5px"}} onClick={() => redirectTo("/doctordashboard")}>Doctor Dashboard</span></button>
                 </div>
                 <div class="text-center" style={{marginTop: "5%"}}>
                   <button style={{width: "225px"}}
