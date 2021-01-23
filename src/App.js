@@ -17,6 +17,7 @@ import Otherlinks from './Otherlinks';
 import Paymentlist from './Paymentlist';
 import Phamracistdashboard from './Phamracistdashboard';
 import Nursedashboard from './Nursedashboard';
+import Admindashboard from './Admindashboard';
 import Labtechniciandashboard from './Labtechniciandashboard';
 import Registration from './Registration';
 import Patientdashboard from './Patientdashboard';
@@ -56,6 +57,7 @@ return (
       <Route exact path="/paymentlist" component={Paymentlist} />
       <Route exact path="/pharmacistdashboard" component={Phamracistdashboard} />
       <Route exact path="/nursedashboard" component={Nursedashboard} />
+      <Route exact path="/admindashboard" component={Admindashboard} />
       <Route exact path="/labtechniciandashboard" component={Labtechniciandashboard} />
       <Route exact path="/registration" component={Registration} />
       <Route exact path="/patientdashboard" component={Patientdashboard} />

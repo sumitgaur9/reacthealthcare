@@ -49,8 +49,9 @@ import {
     Get_PharmacistWiseApptCount,
     Get_MonthlyHomeOnlineApptCount,
     Get_PatientMedicinesHomeDelivery,
-    Get_AppointmentsByDocID
-
+    Get_AppointmentsByDocID,
+    Get_UploadPrescriptionForMedicineApprovalsList,
+    Save_ApproveMedicineReqUsingPrescription,
 } from "../constants/constants";
 
 
@@ -171,6 +172,12 @@ export default {
   getLabTestsPackageList: (load) => {
     return GET(`${Commaon_Path}${API_VERSION_V1}${Get_LabTestsPackageList}`);
   },
+  Get_UploadPrescriptionForMedicineApprovalsList: (load, patientID) => {
+    if (patientID) {
+      return GET(`${Commaon_Path}${API_VERSION_V1}${Get_UploadPrescriptionForMedicineApprovalsList}/${patientID}`);
+    }
+    return GET(`${Commaon_Path}${API_VERSION_V1}${Get_UploadPrescriptionForMedicineApprovalsList}`);
+  },
 
 
    //dashboard
@@ -290,6 +297,9 @@ export default {
   },
   GenerateOTPToPhone: (load) => {
     return POST(`${Commaon_Path}${API_VERSION_V1}${GenerateOTPToPhone}`, load);
+  },
+  Save_ApproveMedicineReqUsingPrescription: (load) => {
+    return POST(`${Commaon_Path}${API_VERSION_V1}${Save_ApproveMedicineReqUsingPrescription}`, load);
   },
 //   updateLoadStatus: (userId, bidId, status) => {
 //     return PUT(`${Commaon_Path}/${API_VERSION_V1}/bidStatus`, {
