@@ -105,3 +105,26 @@ export function isAbValidDate(input) {
     }
     return result;
   }
+
+  export function ToDBDateFormat(input) {
+    if (input) {
+        if (input.length == 10) {
+            var dt = moment(input, 'DD/MM/YYYY').format('YYYY/MM/DD');
+            return dt;
+        }
+    }
+    if (isAbValidDate(input) == false) {
+        return defaultDateDBFormat();
+    }
+    if (input) {
+        var result = new Date(input);
+        if (result) {
+            return ToSpecificDateFormat(result, AbDateTimeType.YYYY_MM_DD_HH_MM_SS);
+        }
+    }
+    return ToSpecificDateFormat(defaultDateDBFormat(), AbDateTimeType.YYYY_MM_DD_HH_MM_SS);
+}
+
+export function defaultDateDBFormat() {
+    return "1753-01-01 00:00:00";
+  }

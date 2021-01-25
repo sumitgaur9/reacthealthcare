@@ -1,0 +1,35 @@
+.bookappointmentbtn{
+    float: left;
+    margin: 0;
+    background: linear-gradient(to right, #39b49a 0%, #1d86df 100%);
+    width: 100%;
+    color: #fff;
+    padding: 9px 25px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+
+.closebtnmodal {
+    margin: 0;
+    position: absolute;
+    top: 11%;
+    left: 43%;
+    width: 23px;
+    height: 23px;
+    border-radius: 4px;
+    background-color: #eff5f5;
+    color: #ffe300;
+    font-size: 9px;
+    opacity: 1;
+    z-index: 10;
+  }
+
+  .closebtntext {
+    font-size: 20px;
+    position: absolute;
+    top: -6px;
+    right: 3px;
+    color: #0f0fe4;
+
+}

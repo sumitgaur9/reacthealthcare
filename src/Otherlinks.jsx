@@ -8,6 +8,7 @@ import { Expertisemaster } from './Modals/Expertisemaster'
 import { Diseasemaster } from './Modals/Diseasemaster'
 import { WebsiteTextData } from './Modals/WebsiteTextData'
 import { ImageUpload } from './Modals/ImageUpload'
+import { BookAppointment } from './Modals/BookAppointment'
 
 const Otherlinks = () => {
 
@@ -55,9 +56,13 @@ const Otherlinks = () => {
       setShowImageUploadPopup(true)
      }
  
-
-    
-     
+      //
+      const [showBookAppointmentPopup, setShowBookAppointmentPopup] = useState(false);
+      const closeBookAppointmentPopup = () => setShowBookAppointmentPopup(false);
+  
+      function openBookAppointmentPopup(){
+        setShowBookAppointmentPopup(true)
+      }
      
      
 
@@ -107,7 +112,7 @@ const Otherlinks = () => {
                 <div class="text-center">
                   <button style={{width: '225px'}}
                     class={stylesNur.btn}><i class="fa fa-book" aria-hidden="true"></i><span
-                      style={{marginLeft:'5px'}}>Book Appointment</span></button>
+                      style={{marginLeft:'5px'}}onClick={() => openBookAppointmentPopup()}>Book Appointment</span></button>
                 </div>
 
                 <div class="text-center" style={{marginTop: '5%'}}>
@@ -286,6 +291,8 @@ const Otherlinks = () => {
 {showWebsiteTextDataPopup && <WebsiteTextData showWebsiteTextDataPopup={showWebsiteTextDataPopup} closeWebsiteTextDataPopup={closeWebsiteTextDataPopup}/>}
 
 {showImageUploadPopup && <ImageUpload showImageUploadPopup={showImageUploadPopup} closeImageUploadPopup={closeImageUploadPopup}/>}
+
+{showBookAppointmentPopup && <BookAppointment showBookAppointmentPopup={showBookAppointmentPopup} closeBookAppointmentPopup={closeBookAppointmentPopup}/>}
 
         </>
     )

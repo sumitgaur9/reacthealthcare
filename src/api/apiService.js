@@ -52,6 +52,7 @@ import {
     Get_AppointmentsByDocID,
     Get_UploadPrescriptionForMedicineApprovalsList,
     Save_ApproveMedicineReqUsingPrescription,
+    Get_DiseasesList,
 } from "../constants/constants";
 
 
@@ -77,6 +78,7 @@ export default {
   Get_ExpertiseList: (load) => {
     return GET(`${Commaon_Path}${API_VERSION_V1}${Get_ExpertiseList}`);
   },
+  
   Get_CompanyList: (load) => {
     return GET(`${Commaon_Path}${API_VERSION_V1}${Get_CompanyList}`);
   },
@@ -87,6 +89,8 @@ export default {
     return GET(`${Commaon_Path}${API_VERSION_V1}${Get_WebsiteImageByLocationEnum}/${rolebasedid}`);
   },   
   
+  
+
   
 
   Save_Company: (load) => {
@@ -142,6 +146,9 @@ export default {
   getLabTechniciansList: (load) => {
     return GET(`${Commaon_Path}${API_VERSION_V1}${Get_LabTechniciansList}`);
   },
+  Get_DiseasesList: (load) => {
+    return GET(`${Commaon_Path}${API_VERSION_V1}${Get_DiseasesList}`);
+  },  
   getPaymentsList: (load,paymentTypeEnumKey) => {
     if(paymentTypeEnumKey!=null){
       return GET(`${Commaon_Path}${API_VERSION_V1}${Get_PaymentLists}/${paymentTypeEnumKey}`);
