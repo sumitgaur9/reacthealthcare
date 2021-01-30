@@ -28,6 +28,7 @@ import styles from './BookAppointment.module.css';
 
   const [textareaValue, settextareaValue] = useState('');
   
+  const [submitted, setsubmitted] = useState(false);
 
   const [patientListData, setPatientListData] = useState([]);
   const [completeDoctorListData, setCompleteDoctorListData] = useState([]);
@@ -53,21 +54,23 @@ import styles from './BookAppointment.module.css';
   const [disableAvailableTimeSlotBtn, setdisableAvailableTimeSlotBtn] = useState(true);
   const [visibleTimeSlot, setvisibleTimeSlot] = useState(false);
 
-  const [completeTimeSlotDataArray, setcompleteTimeSlotDataArray] = useState([]);
+  var completetimeslotarr = [
+    { "id": 0,"name":"10:00 AM - 11:00 AM", "isSlotBooked": false },
+    { "id": 1,"name":"11:00 AM - 12:00 PM", "isSlotBooked": false },
+    { "id": 2,"name":"12:00 PM - 01:00PM", "isSlotBooked": false },
+    { "id": 3,"name":"01:00 PM - 02:00PM", "isSlotBooked": false },
+    { "id": 4,"name":"02:00 PM - 03:00PM", "isSlotBooked": false },
+    { "id": 5,"name":"03:00 PM - 04:00PM", "isSlotBooked": false },
+    { "id": 6,"name":"04:00 PM - 05:00PM", "isSlotBooked": false },
+    { "id": 7,"name":"05:00 PM - 06:00PM", "isSlotBooked": false },
+  ]; 
+
+
+  const [completeTimeSlotDataArray, setcompleteTimeSlotDataArray] = useState(completetimeslotarr);
   const [filterTimeSlotDataArray, setfilterTimeSlotDataArray] = useState([]);
   
   function resetSlotData(){
-    let completeTimeSlotDataArray = [
-      { "id": 0,"name":"10:00 AM - 11:00 AM", "isSlotBooked": false },
-      { "id": 1,"name":"11:00 AM - 12:00 PM", "isSlotBooked": false },
-      { "id": 2,"name":"12:00 PM - 01:00PM", "isSlotBooked": false },
-      { "id": 3,"name":"01:00 PM - 02:00PM", "isSlotBooked": false },
-      { "id": 4,"name":"02:00 PM - 03:00PM", "isSlotBooked": false },
-      { "id": 5,"name":"03:00 PM - 04:00PM", "isSlotBooked": false },
-      { "id": 6,"name":"04:00 PM - 05:00PM", "isSlotBooked": false },
-      { "id": 7,"name":"05:00 PM - 06:00PM", "isSlotBooked": false },
-    ]
-    setcompleteTimeSlotDataArray(completeTimeSlotDataArray);
+    setcompleteTimeSlotDataArray(completetimeslotarr);
   }
 
   const symptomsListData = [
@@ -85,18 +88,19 @@ import styles from './BookAppointment.module.css';
     {'id': '3', 'label': 'Diabetes', 'value': 'Diabetes'},
   ];
   function datechange(date) {
-    // let appointmentDateevent ={
-    //     target: {
-    //         value: date,
-    //         name: 'appointmentDate'
-    //     }
-    // }
-    // InputEvent(appointmentDateevent);
+    
     console.log("date",date)
-    // let abc =  moment(date).format("YYYY/MM/DD");
-    setData({
-      appointmentDate: date
-    });
+    //  let abc =  moment(date).format("YYYY/MM/DD");
+     let appointmentDateevent ={
+        target: {
+            value: date,
+            name: 'appointmentDate'
+        }
+    }
+    InputEvent(appointmentDateevent);
+    // setData({
+    //   appointmentDate: date
+    // });
 
     setdisableAvailableTimeSlotBtn(false);
     // setStartDate(date);
@@ -142,32 +146,7 @@ import styles from './BookAppointment.module.css';
     }
   }
   
-  function updatePatientDetails(patientdetail) {
-      setData({
-      patientNname: patientdetail?.name,
-      patientAge: patientdetail?.age,
-      patientSex: patientdetail?.gender,
-      patientEmail: patientdetail?.email,
-      patientMob: patientdetail?.phoneno,
-      patientAddres: patientdetail?.address,
-      patientID: patientdetail?._id,
-      patientWeight: patientdetail?.weight,
-      });
-
-    let textareaValue = 
-  `  ----Patient Details----
-  Name: ${patientdetail.name}
-  Age: ${patientdetail.age}
-  Weight: ${patientdetail.weight}
-  Sex: ${patientdetail.gender==1?'Male':'Female'}
-  Email: ${patientdetail.email}
-  Phone: ${patientdetail.phoneno}
-  Add: ${patientdetail.address}`;
-
-  settextareaValue(textareaValue)
-
-    // this.getpatientprofileid = this.bookAppointmentForm.controls.patientID.value;   //for sending in patient profile popup
-  }
+ 
  
 
 
@@ -285,6 +264,7 @@ useEffect(() => {
             let loadResponse = await Api.Get_AppointmentsByDocID(load);
             if (loadResponse.status) {
                 resetSlotData();
+                setfilterTimeSlotDataArray([]);
                 let data = loadResponse.data;
                 if (data) {
                   resetSlotData();
@@ -293,7 +273,7 @@ useEffect(() => {
                     setfilterTimeSlotDataArray([]);
 
                     let tempcompleteTimeSlotDataArray = completeTimeSlotDataArray;
-                    let tempfilterTimeSlotDataArray = filterTimeSlotDataArray;
+                    let tempfilterTimeSlotDataArray = [];
 
                     let doctorWiseAppointmentData = data.filter(function (item) {
                       return item.isVisitCompleted == false;
@@ -379,16 +359,15 @@ useEffect(() => {
     function doctorChangeEvent(e) {
         setImageValue('');// this.getImageValue ='';
         setStartDate('');
-        setData({
-          doctorName: e.target.value
-        });
-        // let doctorNameevent ={
-        //     target: {
-        //         value: e.target.value,
-        //         name: 'doctorName'
-        //     }
-        // }
-        // InputEvent(doctorNameevent);
+      //  setData({...data, doctorName: e.target.value});        
+
+        let doctorNameevent ={
+            target: {
+                value: e.target.value,
+                name: 'doctorName'
+            }
+        }
+        InputEvent(doctorNameevent);
         // let doctorIdevent ={
         //     target: {
         //         value: e.target.value,
@@ -400,9 +379,15 @@ useEffect(() => {
         // this.bookAppointmentForm.controls.appointmentDate.enable();
         // this.bookAppointmentForm.controls.appointmentDate.updateValueAndValidity();
         setvisibleTimeSlot(false); // this.visibleTimeSlot = false; 
-        setData({
-          appointmentDate: '',
-        });
+        let appointmentDate ={
+          target: {
+              value: '',
+              name: 'appointmentDate'
+          }
+      }
+      InputEvent(appointmentDate);
+
+       // setData({...data, appointmentDate: ''});        
         // this.bookAppointmentForm.patchValue({
         //     appointmentDate: ''
         // })
@@ -412,10 +397,26 @@ useEffect(() => {
         setnewArray1(newArray1);
 
         if (newArray1) {
-          setData({
-            doctorID: newArray1[0]?._id,
-            charges: newArray1[0]?.charges
-          });
+          let doctorID ={
+            target: {
+                value: newArray1[0]?._id,
+                name: 'doctorID'
+            }
+        }
+        InputEvent(doctorID);
+
+        let charges ={
+          target: {
+              value: newArray1[0]?.charges,
+              name: 'charges'
+          }
+        }
+        InputEvent(charges);
+
+
+          // setData({...data, doctorID: newArray1[0]?._id});
+          // setData({...data, charges: newArray1[0]?.charges });
+
             // this.bookAppointmentForm.controls.doctorID.setValue(newArray1[0]?._id);
             // this.bookAppointmentForm.controls.charges.setValue(newArray1[0]?.charges);
             if(newArray1[0]?.newimage?.data?.data){
@@ -427,31 +428,139 @@ useEffect(() => {
 
     }
 
-const Update_DoctorProfile = async () => {
-  var formData = new FormData();
-    formData.append('image', '');
-    if (UploadFile.length && UploadFileName) {
-      formData.append('newimage', UploadFile[0], UploadFileName);
-    } else {
-      formData.append('newimage', '');
+const Save_BookAppointment = async () => {
+  let dataobj = {};
+    dataobj = data;
+    if(selectedDiseases && selectedDiseases.length>0)
+    {
+      dataobj.diseasesData=[];
+      for (var i = 0; i < selectedDiseases.length; i++) {
+        let testdataobj = {
+          "diseasesID": selectedDiseases[i].id,
+          "diseaseName": selectedDiseases[i].itemName,
+        }
+        dataobj.diseasesData.push(testdataobj);
+      }
     }
-    formData.append('name', data.name);
-    formData.append('email', data.email);
-    formData.append('phoneno', data.phoneno);
-    formData.append('experties', data.experties);
-    formData.append('charges', data.charges);
-    formData.append('area', data.area);
-    formData.append('qualification', data.qualification);
-    formData.append('id', data.id);
-    formData.append('participantID', data.participantID);
-    formData.append('description', data.description);
-  let loadResponse = await Api.Update_DoctorProfile(formData,props.doctorid);
+    else{
+      alert('Please Select Diseases');// this.toastr.success('Please Select Diseases');
+      return;
+    }
+    let symptomsdataarray=[];    
+    selectedSymptomItems.forEach(element => {
+      let dataobjec = {
+        symptomID: element.id,
+        symptomName: element.itemName
+      }
+      symptomsdataarray.push(dataobjec);
+    });
+    dataobj.symptomsData =  symptomsdataarray;
+
+    let illnessdataarray=[];    
+    selectedIllnessItems.forEach(element => {
+      let dataobje = {
+        illnessID: element.id,
+        illnessName: element.itemName
+      }
+      illnessdataarray.push(dataobje);
+    });
+    dataobj.illnessHistoryData =  illnessdataarray;
+
+    dataobj.appointmentDate = ToDBDateFormatlocal(moment(dataobj.appointmentDate).format("DD/MM/YYYY"));
+    dataobj.timeSlot = parseInt(dataobj.timeSlot);
+
+  let loadResponse = await Api.Save_BookAppointment(dataobj);
   if (loadResponse.status) {
     props.closeBookAppointmentPopup(); 
     } else {
       // setExpertiesArrayData([]);
     }
 };
+
+
+function updatePatientDetails(patientdetail) {
+  // setData({
+  // patientNname: patientdetail?.name,
+  // patientAge: patientdetail?.age,
+  // patientSex: patientdetail?.gender,
+  // patientEmail: patientdetail?.email,
+  // patientMob: patientdetail?.phoneno,
+  // patientAddres: patientdetail?.address,
+  // patientID: patientdetail?._id,
+  // patientWeight: patientdetail?.weight,
+  // });
+
+  let patientNname = {
+    target: {
+      value: patientdetail?.name,
+      name: 'patientNname'
+    }
+  }
+  InputEvent(patientNname);////
+  let patientAge = {
+    target: {
+      value: patientdetail?.age,
+      name: 'patientAge'
+    }
+  }
+  InputEvent(patientAge);////
+  let patientSex = {
+    target: {
+      value: patientdetail?.gender,
+      name: 'patientSex'
+    }
+  }
+  InputEvent(patientSex);////
+  let patientEmail = {
+    target: {
+      value: patientdetail?.email,
+      name: 'patientEmail'
+    }
+  }
+  InputEvent(patientEmail);////
+  let patientMob = {
+    target: {
+      value: patientdetail?.phoneno,
+      name: 'patientMob'
+    }
+  }
+  InputEvent(patientMob);////  
+  let patientAddres = {
+    target: {
+      value: patientdetail?.address,
+      name: 'patientAddres'
+    }
+  }
+  InputEvent(patientAddres);////  
+  let patientID = {
+    target: {
+      value: patientdetail?._id,
+      name: 'patientID'
+    }
+  }
+  InputEvent(patientID);////
+  let patientWeight = {
+    target: {
+      value: patientdetail?.weight,
+      name: 'patientWeight'
+    }
+  }
+  InputEvent(patientWeight);////
+  
+let textareaValue = 
+`  ----Patient Details----
+Name: ${patientdetail.name}
+Age: ${patientdetail.age}
+Weight: ${patientdetail.weight}
+Sex: ${patientdetail.gender==1?'Male':'Female'}
+Email: ${patientdetail.email}
+Phone: ${patientdetail.phoneno}
+Add: ${patientdetail.address}`;
+
+settextareaValue(textareaValue)
+
+// this.getpatientprofileid = this.bookAppointmentForm.controls.patientID.value;   //for sending in patient profile popup
+}
     
     return(
             <> 
@@ -519,7 +628,7 @@ const Update_DoctorProfile = async () => {
 
                         <div class="form-group">
                             <Select options={symptomsListData} isMulti components={animatedComponents} className="basic-multi-select" placeholder="Select Symptoms (If Any)" classNamePrefix="select" onChange={(selectedOption) => {
-                                if (selectedOption.length) {
+                                if (selectedOption?.length) {
                                     setSelectedSymptomItems(selectedOption)
                                 }
                             }} />
@@ -527,7 +636,7 @@ const Update_DoctorProfile = async () => {
 
                         <div class="form-group">
                             <Select options={illnessHistoryListData} isMulti components={animatedComponents} className="basic-multi-select" placeholder="Select Illness History (If Any)" classNamePrefix="select" onChange={(selectedOption) => {
-                                if (selectedOption.length) {
+                                if (selectedOption?.length) {
                                     setSelectedIllnessItems(selectedOption)
                                 }
                             }} />
@@ -535,7 +644,7 @@ const Update_DoctorProfile = async () => {
 
                         <div class="form-group">
                             <div class="input-group mb-2">
-                                <textarea id="Description" name="Description" value={data.description} onChange={InputEvent} rows="4" cols="30"
+                                <textarea id="description" name="description" value={data.description} onChange={InputEvent} rows="4" cols="30"
                                     class="form-control" placeholder="Description"></textarea>
                             </div>
                         </div>
@@ -610,7 +719,7 @@ const Update_DoctorProfile = async () => {
                                 {visibleTimeSlot &&
                                     <div class="form-group">
                                     <label>Time Slot</label>
-                                    <select className="form-control" onChange={(e) => { patientNameChangeEvent(e); }}>
+                                    <select className="form-control" name="timeSlot" value={data.timeSlot}  onChange={InputEvent}>
                                         <option value=""></option>
                                     {
                                         filterTimeSlotDataArray.map((opt, ind) => {
@@ -636,7 +745,7 @@ const Update_DoctorProfile = async () => {
             <Modal.Footer>              
               <div className="buttonSection">
                 <div className="text-center">
-                  <input type="submit" onClick={Update_DoctorProfile}  style={{width: '200px',fontWeight: '600'}} value="✔️ &nbsp;&nbsp;Save" className="btn btn-info btn-block rounded-0 py-2" />
+                  <input type="submit" onClick={Save_BookAppointment}  style={{width: '200px',fontWeight: '600'}} value="✔️ &nbsp;&nbsp;Save" className="btn btn-info btn-block rounded-0 py-2" />
                 </div>
               </div>
             </Modal.Footer>

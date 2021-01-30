@@ -53,6 +53,7 @@ import {
     Get_UploadPrescriptionForMedicineApprovalsList,
     Save_ApproveMedicineReqUsingPrescription,
     Get_DiseasesList,
+    Save_BookAppointment,
 } from "../constants/constants";
 
 
@@ -105,7 +106,9 @@ export default {
   SaveUpdate_UploadWebsiteImages: (load) => {
     return POST(`${Commaon_Path}${API_VERSION_V1}${SaveUpdate_UploadWebsiteImages}`,load);
   },
-  
+  Save_BookAppointment: (load) => {
+    return POST(`${Commaon_Path}${API_VERSION_V1}${Save_BookAppointment}`,load);
+  },
   
 
   Update_DoctorProfile: (load,id) => {
