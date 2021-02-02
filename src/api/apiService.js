@@ -54,6 +54,7 @@ import {
     Save_ApproveMedicineReqUsingPrescription,
     Get_DiseasesList,
     Save_BookAppointment,
+    Save_BookLabTest,
 } from "../constants/constants";
 
 
@@ -109,6 +110,9 @@ export default {
   Save_BookAppointment: (load) => {
     return POST(`${Commaon_Path}${API_VERSION_V1}${Save_BookAppointment}`,load);
   },
+  Save_BookLabTest: (load) => {
+    return POST(`${Commaon_Path}${API_VERSION_V1}${Save_BookLabTest}`,load);
+  },
   
 
   Update_DoctorProfile: (load,id) => {
@@ -151,7 +155,13 @@ export default {
   },
   Get_DiseasesList: (load) => {
     return GET(`${Commaon_Path}${API_VERSION_V1}${Get_DiseasesList}`);
-  },  
+  },    
+  Get_LabTestsPackageList: (load) => {
+    return GET(`${Commaon_Path}${API_VERSION_V1}${Get_LabTestsPackageList}`);
+  },    
+  Get_LabTestsList: (load) => {
+    return GET(`${Commaon_Path}${API_VERSION_V1}${Get_LabTestsList}`);
+  },    
   getPaymentsList: (load,paymentTypeEnumKey) => {
     if(paymentTypeEnumKey!=null){
       return GET(`${Commaon_Path}${API_VERSION_V1}${Get_PaymentLists}/${paymentTypeEnumKey}`);
@@ -281,7 +291,7 @@ export default {
   Get_DoctorsList: (load) => {
     return GET(`${Commaon_Path}${API_VERSION_V1}${Get_DoctorsList}`);
   },
- 
+  
   Get_AppointmentsByDocID: async (load) => {
     return POST(`${Commaon_Path}${API_VERSION_V1}${Get_AppointmentsByDocID}`, load);
   }, 
