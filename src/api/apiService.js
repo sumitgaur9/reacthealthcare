@@ -55,10 +55,15 @@ import {
     Get_DiseasesList,
     Save_BookAppointment,
     Save_BookLabTest,
-} from "../constants/constants";
-
-
-export default {
+    userme,
+  } from "../constants/constants";
+  
+  
+  export default {
+  
+    userme: (load) => {
+      return GET(`${Commaon_Path}${API_VERSION_V1}${userme}`);
+    },
   getDoctorProfile: (load,rolebasedid) => {
     return GET(`${Commaon_Path}${API_VERSION_V1}${Get_DoctorProfile}/${rolebasedid}`);
   },

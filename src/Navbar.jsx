@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import Api from '../src/api/apiService'
 
 import { NavLink } from 'react-router-dom';
 import styles from "./Navbar.module.css";
@@ -19,6 +20,20 @@ const Navbar = () => {
             history.push(path);
     }
 
+    useEffect(() => {
+        const userme = async (load) => {
+          let loadResponse = await Api.userme(load);
+          if (loadResponse.status) {
+            console.log("usermeData...........",loadResponse.data)
+          } else {
+            // setTestPackageListData([]);
+          }
+        };
+    
+        let dataobj = {};
+        userme(dataobj);
+    
+      }, []);
 
     return (
         <>

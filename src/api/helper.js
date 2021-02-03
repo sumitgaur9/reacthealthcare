@@ -2,6 +2,19 @@ import axios from "axios";
 
 const axiosInstance = axios.create();
 
+let params = {};
+let axiosConfig = {};
+let currentUser = JSON.parse(window.sessionStorage.getItem("userToken"));
+if(currentUser && currentUser.token) {
+  axiosConfig = {
+    headers: {
+      "Content-Type": "application/json;charset=UTF-8",
+      "Authorization": `Bearer ${currentUser.token}`
+    }
+  }
+}
+axiosInstance.defaults.headers.common=axiosConfig.headers;
+
 axiosInstance.interceptors.response.use(
   (response) => {
     console.log("response", response);

@@ -140,6 +140,7 @@ const Login = () => {
                 }
                 //this.utilityservice.navigateToSpecificPage(data.user.role);
                 // this.utilityservice.onLoginSuccessfully.next();
+                sessionStorage.setItem("userToken", JSON.stringify(loadResponse.data));
             }
             redirectTo('/doctorlist')
         }
