@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Api from '../src/api/apiService'
+// import {messageService} from '../src/api/message.service'
+import { messageService } from '../src/api/message.service';
 
 import { NavLink } from 'react-router-dom';
 import styles from "./Navbar.module.css";
@@ -19,6 +21,22 @@ const Navbar = () => {
     const redirectTo =  (path) => {
             history.push(path);
     }
+
+    useEffect(() => {
+        let subscription = messageService.getMessage().subscribe(message => {
+            if (message) {
+                console.log(message)
+                alert(message.text)
+                // add message to local state if not empty
+                //this.setState({ messages: [...this.state.messages, message] });
+            } else {
+                alert("no message")
+                // clear messages when empty message received
+               // this.setState({ messages: [] });
+            }
+        });
+    }, []);
+
 
     useEffect(() => {
         const userme = async (load) => {

@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import Api from './api/apiService'
+//import messageService from './api/message.service'
+import { messageService } from '../src/api/message.service';
+
 import { useHistory } from "react-router-dom";
 // import { ModalForgotPassword } from './Modals/Forgotpassword'
 import stylesLogin from "./Login.module.css";
@@ -126,6 +129,10 @@ const Login = () => {
         }
         getLoadData(dataobj);
     };
+    function sendMessage() {
+        // send message to subscribers via observable subject
+        messageService.sendMessage('Event fire from login');
+    }
 
     const getLoadData = async (load) => {
         let loadResponse = await Api.login(load);
@@ -143,6 +150,7 @@ const Login = () => {
                 sessionStorage.setItem("userToken", JSON.stringify(loadResponse.data));
             }
             redirectTo('/doctorlist')
+            sendMessage();
         }
     };
 
