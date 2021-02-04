@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Api from '../src/api/apiService'
 // import {messageService} from '../src/api/message.service'
 import { messageService } from '../src/api/message.service';
-
+import { isUserLoggedInUser } from './utils/utils'
 import { NavLink } from 'react-router-dom';
 import styles from "./Navbar.module.css";
 import logo from '../src/images/logo.png';
@@ -15,6 +15,8 @@ const Navbar = () => {
     
     const [nameFirstChar, setnameFirstChar] = useState('S');
     const [username, setusernames] = useState('Sumit');
+    const [isUserLoggedIn, setisUserLoggedIn] = useState(false);
+    const [currentLoggedUserData, setcurrentLoggedUserData] = useState({});
 
     const history = useHistory();
 
@@ -27,6 +29,21 @@ const Navbar = () => {
             if (message) {
                 console.log(message)
                 alert(message.text)
+                let userSubs = isUserLoggedInUser();
+                if (userSubs && userSubs != null) {
+                  setisUserLoggedIn(true);
+                  setcurrentLoggedUserData(userSubs.user);
+                  setusernames(userSubs.user.name);
+                  userme();
+                } else {
+                  setisUserLoggedIn(false);
+                  setcurrentLoggedUserData({});
+                  setusernames('');
+
+                }
+
+
+
                 // add message to local state if not empty
                 //this.setState({ messages: [...this.state.messages, message] });
             } else {
@@ -38,21 +55,31 @@ const Navbar = () => {
     }, []);
 
 
-    useEffect(() => {
-        const userme = async (load) => {
-          let loadResponse = await Api.userme(load);
-          if (loadResponse.status) {
+      const userme = async () => {
+        let dataobj = {
+        };
+       
+        let loadResponse = await Api.userme(dataobj);
+        if (loadResponse.status) {
+            if (loadResponse.data && loadResponse.data.roleBaseId) {
+                sessionStorage.setItem("currentusermedata", JSON.stringify(loadResponse.data));
+              }
             console.log("usermeData...........",loadResponse.data)
           } else {
-            // setTestPackageListData([]);
           }
-        };
-    
-        let dataobj = {};
-        userme(dataobj);
-    
-      }, []);
+      }
 
+      const logout = async () => {
+        let dataobj = {
+        };
+        let loadResponse = await Api.logout(dataobj);
+        if (loadResponse.status) {
+            sessionStorage.clear();
+            redirectTo('/login')
+          } else {
+          }
+      }
+    
     return (
         <>
             <header>
@@ -117,6 +144,7 @@ const Navbar = () => {
                                     <li><a onClick={() => redirectTo('/nurselist')}>Nurse</a></li>
                                     <li><a onClick={() => redirectTo('/physiolist')}>Physiotherapist</a></li>
                                     <li><a onClick={() => redirectTo('/otherlinks')}>Features</a></li>
+                                    <li><a onClick={() => logout()}>Logout</a></li>
 
                                 </ul>
                             </div>

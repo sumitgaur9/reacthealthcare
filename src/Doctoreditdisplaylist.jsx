@@ -19,6 +19,8 @@ const Doctoreditdisplaylist = () => {
         regMobileNo: '',
     });
 
+    const [currentUser, setcurrentUser] = useState({});
+
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -33,6 +35,8 @@ const Doctoreditdisplaylist = () => {
 
 
     useEffect(() => {
+        setcurrentUser(JSON.parse(window.sessionStorage.getItem("userToken")));
+
         const getDoctorsList = async (load) => {
             let loadResponse = await Api.getDoctorsList(load);
             if (loadResponse.status) {
@@ -96,14 +100,15 @@ const Doctoreditdisplaylist = () => {
                                                                 </div>
                                                                 <div style={{width:'10%',float:'right'}}>
                                                                     <div style={{width:'30%',float:'left'}} className="card-title1">
-                                                                     <i className="fa fa-pencil" style={{fontSize: '20px'}} aria-hidden="true"
-                                                                        onClick={() => openDoctorProfilePopup(data._id)}></i> 
+                                                                    {currentUser.user.role==11 && <i className="fa fa-pencil" style={{fontSize: '20px'}} aria-hidden="true"
+                                                                        onClick={() => openDoctorProfilePopup(data._id)}></i> } 
                                                                         {/* <i className="fa fa-pencil" style={{fontSize: '20px'}} aria-hidden="true"
                                                                         onClick={() => openVerifyOTPPopup(true)}></i> */}
                                                                     </div>
                                                                     <div style={{float:'left',width:'4%'}} className="card-title1">
-                                                                    <i className="fa fa-trash" aria-hidden="true"
-                                                                        style={{color:'red',fontSize: '20px'}}></i>
+                                                                    {currentUser.user.role==11 &&  <i className="fa fa-trash" aria-hidden="true"
+                                                                        style={{color:'red',fontSize: '20px'}}></i> } 
+                                                                   
                                                                     </div>
                                                                 </div>
                                                             </div>

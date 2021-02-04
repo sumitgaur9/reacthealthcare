@@ -109,7 +109,7 @@ const Login = () => {
             password: data.password
 
         }
-        sessionStorage.setItem("currentusermedata", JSON.stringify(obj));
+      //  sessionStorage.setItem("currentusermedata", JSON.stringify(obj));
     }
 
 

@@ -56,14 +56,15 @@ import {
     Save_BookAppointment,
     Save_BookLabTest,
     userme,
+    logout,
+
   } from "../constants/constants";
   
   
   export default {
-  
-    userme: (load) => {
-      return GET(`${Commaon_Path}${API_VERSION_V1}${userme}`);
-    },
+
+ 
+
   getDoctorProfile: (load,rolebasedid) => {
     return GET(`${Commaon_Path}${API_VERSION_V1}${Get_DoctorProfile}/${rolebasedid}`);
   },
@@ -301,11 +302,14 @@ import {
     return POST(`${Commaon_Path}${API_VERSION_V1}${Get_AppointmentsByDocID}`, load);
   }, 
 
-
   
   
-
-  
+  userme: (load) => {
+    return GET(`${Commaon_Path}${API_VERSION_V1}${userme}`);
+  },
+  logout: async (load) => {
+    return POST(`${Commaon_Path}${API_VERSION_V1}${logout}`, load);
+  }, 
   login: async (load) => {
     return POST(`${Commaon_Path}${API_VERSION_V1}${login}`, load);
   }, 

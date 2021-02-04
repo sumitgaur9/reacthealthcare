@@ -128,3 +128,13 @@ export function isAbValidDate(input) {
 export function defaultDateDBFormat() {
     return "1753-01-01 00:00:00";
   }
+
+
+  
+  export function  isUserLoggedInUser() {
+    let loginedUserData = JSON.parse(window.sessionStorage.getItem("userToken"));  //need to do get current user data api need 
+    if (loginedUserData && loginedUserData != null) {
+        return loginedUserData;
+    }
+    return false;
+}
