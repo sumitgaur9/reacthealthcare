@@ -1,6 +1,14 @@
+import { LoaderService } from '../api/loader.service';
 import axios from "axios";
-
 const axiosInstance = axios.create();
+
+axiosInstance.interceptors.request.use(req => {
+  showLoader();  
+  return req;
+ },error=>{
+  return error;
+ }
+);
 
 let params = {};
 let axiosConfig = {};
@@ -17,11 +25,13 @@ axiosInstance.defaults.headers.common=axiosConfig.headers;
 
 axiosInstance.interceptors.response.use(
   (response) => {
+    onEnd();
     console.log("response", response);
 
     return response;
   },
   (error) => {
+    onEnd();
     console.log("axiosInstance error", error);
     if (
       error.response &&
@@ -41,6 +51,16 @@ axiosInstance.interceptors.response.use(
     }
   }
 );
+
+function onEnd() {
+  hideLoader();
+}
+function showLoader() {
+  LoaderService.show()
+}
+function hideLoader() {
+  LoaderService.hide();
+}
 
 function remove_non_ascii(str) {
   if (str === null || str === "") return false;

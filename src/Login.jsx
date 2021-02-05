@@ -120,9 +120,9 @@ const Login = () => {
         // if (this.loginInfo.invalid) {
         //     return;
         //   }
-        alert(`
-        My email id is ${data.email}. My password is ${data.password}.
-        `);
+        // alert(`
+        // My email id is ${data.email}. My password is ${data.password}.
+        // `);
         let dataobj = {
             email: data.email,
             password: data.password
@@ -137,7 +137,7 @@ const Login = () => {
     const getLoadData = async (load) => {
         let loadResponse = await Api.login(load);
         if (loadResponse.status) {
-            alert("success login");
+            // alert("success login");
             console.log("loginUserResponseData..", data);
             if (loadResponse.data.token && loadResponse.data.token != "" && loadResponse.data.token != null) {
                 let datainput = {};
@@ -179,7 +179,7 @@ const Login = () => {
     const GenerateOTPAPICall = async (load) => {
         let loadResponse = await Api.GenerateOTP(load);
         if (loadResponse.status) {
-            alert("success OTP")
+            // alert("success OTP")
             setinputForVerifyOTP1(prev => ({
                 ...prev, OTPAPIValue: loadResponse.data.response.OTP,
                 regMobileNo: loadResponse.data.response.regMobileNo

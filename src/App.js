@@ -22,6 +22,7 @@ import Labtechniciandashboard from './Labtechniciandashboard';
 import Registration from './Registration';
 import Patientdashboard from './Patientdashboard';
 import Doctordashboard from './Doctordashboard';
+import LoaderComponent from './api/Loader';
 
 
 
@@ -67,6 +68,8 @@ return (
       
       
     </Switch>
+    {<LoaderComponent/>}
+
  </div>
 )
 }

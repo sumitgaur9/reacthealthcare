@@ -28,7 +28,7 @@ const Navbar = () => {
         let subscription = messageService.getMessage().subscribe(message => {
             if (message) {
                 console.log(message)
-                alert(message.text)
+                // alert(message.text)
                 let userSubs = isUserLoggedInUser();
                 if (userSubs && userSubs != null) {
                   setisUserLoggedIn(true);
@@ -47,7 +47,7 @@ const Navbar = () => {
                 // add message to local state if not empty
                 //this.setState({ messages: [...this.state.messages, message] });
             } else {
-                alert("no message")
+                // alert("no message")
                 // clear messages when empty message received
                // this.setState({ messages: [] });
             }
