@@ -10578,5 +10578,11 @@ div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner p {
 }
 
 
+.custom-modal-style {
+width: 1150px!important;
+}
 
 
+.custom-modal-style1 {
+  margin-left: 0!important;
+  }
