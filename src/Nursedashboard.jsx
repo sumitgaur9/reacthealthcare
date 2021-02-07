@@ -25,9 +25,9 @@ const Nursedashboard = () => {
     const [doctorListData, setDoctorListData] = useState([]);
 
     //openVerifyOTPPopup
-    const [showVerifyOTPPopup, setShowVerifyOTPPopup] = useState(false);
-    const closeVerifyOTPPopup = () => setShowVerifyOTPPopup(false);
-    const openVerifyOTPPopup = () => setShowVerifyOTPPopup(true);
+    const [showVisitForAllPopup, setShowVisitForAllPopup] = useState(false);
+    const closeVisitForAllPopup = () => setShowVisitForAllPopup(false);
+    const openVisitForAllPopup = () => setShowVisitForAllPopup(true);
 
 
     useEffect(() => {
@@ -66,11 +66,11 @@ const Nursedashboard = () => {
     function openDoctorProfilePopup(id){
         setDoctorID(id);
         // alert(doctorid)
-        setShowVerifyOTPPopup(true)
+        setShowVisitForAllPopup(true)
     }
 
     function openShowVisitForAll(data){
-
+        setShowVisitForAllPopup(true);
     }
 
 
@@ -125,7 +125,7 @@ const Nursedashboard = () => {
                 </div>
             </div>
 
-            {showVerifyOTPPopup && <Labtechnicianprofile showVerifyOTPPopup={showVerifyOTPPopup} doctorid={doctorid} closeVerifyOTPPopup={closeVerifyOTPPopup} />}
+            {showVisitForAllPopup && <Labtechnicianprofile showVisitForAllPopup={showVisitForAllPopup} doctorid={doctorid} closeVisitForAllPopup={closeVisitForAllPopup} />}
 
         </>
     )
